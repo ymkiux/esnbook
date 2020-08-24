@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="常规性功能">
+        <EditTextPreference
+            android:dialogTitle="输入动漫图片API链接："
+            android:key="edit_pt"
+            android:summary="输入链接"
+            android:title="替换动漫图链"/>
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="del_t"
+            android:title="自动清理缓存"
+            android:summary="退出自动清除其缓存文件"/>
+    </PreferenceCategory>
+</PreferenceScreen>

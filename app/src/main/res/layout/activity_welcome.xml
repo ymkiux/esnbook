@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:layout_height="100dp"
+        android:layout_width="100dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:id="@+id/Layout1">
+       <zut.edu.cn.notepad.cursom.OvalImageView
+            android:id="@+id/iv1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+        android:scaleType="fitXY" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_height="80dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        android:id="@+id/Layout3"
+        tools:ignore="DisableBaselineAlignment">
+
+
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_weight="2.0"
+            android:gravity="center"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/app_name"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
+                android:textSize="25sp"/>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_alignParentRight="true"
+        android:layout_height="25dp"
+        android:layout_width="60dp"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp">
+
+        <EditText
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:textColor="@color/colorAccent"
+            android:background="@null"
+            android:id="@+id/TextView1"
+            android:enabled="false" />
+
+    </LinearLayout>
+
+</RelativeLayout>

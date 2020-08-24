@@ -1,55 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <EditText
-        android:id="@+id/show_title"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/back6">
+    <zut.edu.cn.notepad.cursom.TitleBar
+        android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="标题">
-        <requestFocus />
-    </EditText>
-    <TextView
-        android:id="@+id/show_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="right"
-        android:textSize="10sp"/>
-    <EditText
-        android:id="@+id/show_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:hint="内容"
-        android:gravity="left"/>
-
+        android:background="@color/colorImages1"/>
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center">
+        tools:ignore="UselessParent">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="10dp">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/btn_color">
+                <EditText
+                    android:id="@+id/show_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:hint="@string/title1"
+                    tools:ignore="Autofill,TextFields">
+                    <requestFocus />
+                </EditText>
+            </ScrollView>
+        </LinearLayout>
+            <TextView
+                android:id="@+id/show_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:background="#000"
+                android:textColor="#FFF"
+                android:textSize="10sp"
+                tools:ignore="RtlHardcoded,SmallSp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp">
 
-        <Button
-            android:id="@+id/show_save"
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/btn_color"
+                    android:layout_margin="2dp"
+                    tools:ignore="UselessParent">
+
+                    <zut.edu.cn.notepad.cursom.CuNo_EditText
+                        android:id="@+id/show_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="left"
+                        android:hint="@string/context1"
+                        tools:ignore="ObsoleteLayoutParam,RtlHardcoded" />
+
+                </ScrollView>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_save1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="#FFFFFF"
-            android:layout_marginBottom="10dp"
-            android:text="保存"
-            android:textSize="20sp"/>
-        <Button
-            android:id="@+id/show_cancel"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/colorback"
+            android:src="@drawable/ic_mode_edit_black_24dp"
+            app:backgroundTint="@color/colorImages1" />
+
+    </RelativeLayout>
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="#FFFFFF"
-            android:layout_marginBottom="10dp"
-            android:text="取消"
-            android:textSize="20sp"/>
-
+            android:id="@+id/tv_showNumber"
+            android:background="@drawable/number_shape"
+            android:layout_alignParentBottom="true"
+            tools:ignore="UnknownIdInLayout" />
+    </RelativeLayout>
     </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/main1" />
 </LinearLayout>

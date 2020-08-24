@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorImmerse0">#99ffff</color>
-    <color name="colorImmerse1">#00DDDD</color>
+    <color name="colorImages1">#000</color>
+    <color name="colorback">#CCCCCC</color>
+    <color name="btn_color">#FFFFFF</color>
+    <color name="background1">#222222</color>
+    <color name="back6">#f0f0f0</color>
+    <color name="back_color1">#B0C4DE</color>
+    <color name="translucent">#80FFFFFF</color>
+    <color name="view_line">#F5F5DC</color>
 
 </resources>
