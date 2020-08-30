@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/back6">
-    <zut.edu.cn.notepad.cursom.TitleBar
+    <wooyun.esnb.cursom.TitleBar
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
                     android:layout_margin="2dp"
                     tools:ignore="UselessParent">
 
-                    <zut.edu.cn.notepad.cursom.CuNo_EditText
+                    <wooyun.esnb.cursom.CuNo_EditText
                         android:id="@+id/show_content"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"

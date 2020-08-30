@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context="activity.AboutActivity">
 
-    <zut.edu.cn.notepad.cursom.TitleBar
+    <wooyun.esnb.cursom.TitleBar
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

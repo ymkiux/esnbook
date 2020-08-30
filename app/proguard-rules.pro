@@ -426,9 +426,9 @@ public void xxxxxx(**);
 
 #---------------------------------自定义View的类------------------------
 #在这下面写自定义View的类的类，没有就去掉这句话！
--keep class zut.edu.cn.notepad.cursom.OvalImageView.**{*;}
--keep class zut.edu.cn.notepad.cursom.TitleBar.**{*;}
--keep class zut.edu.cn.notepad.cursom.CuNo_EditText.**{*;}
+-keep class wooyun.esnb.cursom.OvalImageView.**{*;}
+-keep class wooyun.esnb.cursom.TitleBar.**{*;}
+-keep class wooyun.esnb.cursom.CuNo_EditText.**{*;}
 #SuperID
 #由*郭宇翔*贡献混淆代码
 #作者Github地址：https://github.com/yourtion
