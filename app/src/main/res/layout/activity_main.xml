@@ -1,75 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerlayout_drawer"
-    tools:context=".activity.MainActivity"
-   android:orientation="vertical"
-    android:opacity="opaque">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:opacity="opaque"
+    android:orientation="vertical">
+
     <wooyun.esnb.cursom.TitleBar
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorImages1"/>
+        android:background="@color/colorImages1" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@color/back_color1"
+        android:orientation="vertical"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp">
+        android:paddingTop="10dp"
+        android:paddingRight="10dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <android.support.v4.widget.SwipeRefreshLayout
-                    android:id="@+id/swipe_refresh"
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/back_color1">
+
+                <ListView
+                    android:id="@+id/lv_note"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/back_color1">
+                    android:layout_margin="5dp"
+                    android:divider="@color/back_color1"
+                    android:dividerHeight="18dp"
+                    android:layoutAnimation="@anim/list_layout"
+                    android:scrollbarFadeDuration="500"
+                    android:scrollbarSize="3dp"
+                    android:scrollbarThumbVertical="@color/btn_color" />
 
-                    <ListView
-                        android:id="@+id/lv_note"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:scrollbarThumbVertical="@color/btn_color"
-                        android:scrollbarSize="3dp"
-                        android:scrollbarFadeDuration="500"
-                        android:layoutAnimation="@anim/list_layout"
-                        android:divider="@color/back_color1"
-                        android:dividerHeight="18dp" />
-
-                </android.support.v4.widget.SwipeRefreshLayout>
+            </android.support.v4.widget.SwipeRefreshLayout>
 
 
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/btn_add"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@color/colorback"
-                    android:src="@drawable/ic_add_black_24dp"
-                    app:backgroundTint="@color/background1"
-                    tools:ignore="OnClick" />
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btn_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/colorback"
+                android:src="@drawable/ic_add_black_24dp"
+                app:backgroundTint="@color/background1"
+                tools:ignore="OnClick" />
 
         </RelativeLayout>
     </LinearLayout>
+
     <FrameLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/main">
+        android:layout_height="wrap_content">
 
     </FrameLayout>
-
 
 
 </LinearLayout>

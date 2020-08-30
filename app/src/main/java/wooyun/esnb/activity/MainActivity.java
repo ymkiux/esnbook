@@ -1,6 +1,5 @@
 package wooyun.esnb.activity;
 
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -342,7 +341,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
  /*   private void Thread_del() throws IOException {
-
                File del_file=getApplication().getFilesDir();
                File file = new File(del_file,"data.txt");
                 FileInputStream fileInputStream=new FileInputStream(file);
@@ -352,7 +350,6 @@ public class MainActivity extends AppCompatActivity {
                 fileInputStream.close();
             }
     private void Thread_home() throws IOException {
-
         File home_file=getApplication().getFilesDir();
         File file1 = new File(home_file,"home.txt");
         FileInputStream fileInputStream=new FileInputStream(file1);

@@ -6,8 +6,9 @@
     android:versionName="2.6.2">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-        android:name="wooyun.esnb.application.App"
+        android:name=".application.App"
         android:allowBackup="true"
         android:icon="@drawable/icon_t"
         android:label="@string/app_name"
@@ -18,19 +19,15 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:replace="android:allowBackup"
         tools:targetApi="m">
-        <activity android:name=".activity.KyActivity"/>
+        <activity
+            android:name=".activity.MainActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activity.EditActivity" />
+        <activity android:name=".activity.KyActivity" />
         <activity android:name=".activity.SettingActivity" />
-        <activity android:name="wooyun.esnb.activity.AboutActivity" />
+        <activity android:name=".activity.AboutActivity" />
         <activity
-            android:name="wooyun.esnb.activity.MainActivity"
-            android:launchMode="singleTask"
-            tools:ignore="InnerclassSeparator" />
-        <activity
-            android:name="wooyun.esnb.activity.EditActivity"
-            android:label="@string/Active_page0"
-            tools:ignore="InnerclassSeparator" />
-        <activity
-            android:name="wooyun.esnb.activity.WelcomeActivity"
+            android:name=".activity.WelcomeActivity"
             tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,7 +36,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="wooyun.esnb.activity.ShowActivity"
+            android:name=".activity.ShowActivity"
             android:label="@string/Active_page1"
             tools:ignore="InnerclassSeparator" />
     </application>
