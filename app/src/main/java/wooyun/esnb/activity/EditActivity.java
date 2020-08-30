@@ -24,9 +24,9 @@ import java.util.Date;
 import java.util.Objects;
 
 import wooyun.esnb.R;
-import wooyun.esnb.sql.DbOpenHelper;
 import wooyun.esnb.bean.Values;
 import wooyun.esnb.cursom.TitleBar;
+import wooyun.esnb.sql.DbOpenHelper;
 
 import static wooyun.esnb.activity.MainActivity.hasKitKat;
 import static wooyun.esnb.activity.MainActivity.hasLollipop;

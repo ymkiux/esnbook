@@ -18,13 +18,9 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:replace="android:allowBackup"
         tools:targetApi="m">
+        <activity android:name=".activity.KyActivity"/>
+        <activity android:name=".activity.SettingActivity" />
         <activity android:name="wooyun.esnb.activity.AboutActivity" />
-        <activity
-            android:name="wooyun.esnb.activity.SettingActivity"
-            tools:ignore="InnerclassSeparator" />
-        <activity
-            android:name="wooyun.esnb.activity.KyActivity"
-            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="wooyun.esnb.activity.MainActivity"
             android:launchMode="singleTask"
