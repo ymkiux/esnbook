@@ -227,7 +227,7 @@ class AboutActivity : AppCompatActivity() {
     private fun CheckUpdate() {
         Thread(Runnable {
             try {
-                doc = Jsoup.connect("https://www.coolapk.com/apk/wooyun.notepad").get()
+                doc = Jsoup.connect("https://www.coolapk.com/apk/zut.edu.cn.notepad").get()
             } catch (e: IOException) {
                 e.printStackTrace()
             }
