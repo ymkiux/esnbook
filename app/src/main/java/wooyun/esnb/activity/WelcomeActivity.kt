@@ -9,11 +9,13 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Window
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.request.RequestOptions
 import wooyun.esnb.R
-import wooyun.esnb.cursom.OvalImageView
 
 
 class WelcomeActivity : AppCompatActivity() {
@@ -79,8 +81,11 @@ class WelcomeActivity : AppCompatActivity() {
         actionBar?.hide()
         handler.sendEmptyMessageDelayed(0, 2000)
         try {
-            val mtl1 = findViewById<OvalImageView>(R.id.iv1)
-            Glide.with(this).load("http://q1.qlogo.cn/g?b=qq&nk=3255284101&s=640").into(mtl1)
+            val mtl1 = findViewById<ImageView>(R.id.iv1)
+            Glide.with(this)
+                    .load("http://q1.qlogo.cn/g?b=qq&nk=3255284101&s=640")
+                    .apply(RequestOptions.bitmapTransform(CircleCrop()))
+                    .into(mtl1)
         } catch (e: Exception) {
             e.printStackTrace()
         }
