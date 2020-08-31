@@ -85,7 +85,7 @@ class AboutActivity : AppCompatActivity() {
         myDb = DbOpenHelper(this)
 
         tvUpdateLog!!.setOnClickListener(object : NoRepeatClickListener() {
-            override fun onRepeatClick(v: View) {
+            override fun onRepeatClick(v: View?) {
                 showUpdated()
             }
         })
@@ -158,7 +158,7 @@ class AboutActivity : AppCompatActivity() {
         local_version1 = BuildConfig.VERSION_NAME
         version_name!!.setOnClickListener(object : NoRepeatClickListener() {
             @SuppressLint("SetTextI18n")
-            override fun onRepeatClick(v: View) {
+            override fun onRepeatClick(v: View?) {
                 when {
                     local_version1 == cloud_version1 -> {
                         Toast.makeText(this@AboutActivity, R.string.been_updated, Toast.LENGTH_SHORT).show()
