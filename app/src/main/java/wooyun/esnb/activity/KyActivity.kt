@@ -22,6 +22,7 @@ import com.bm.library.PhotoView
 import com.bumptech.glide.Glide
 import wooyun.esnb.R
 import wooyun.esnb.cursom.AppBarStateChangeListener
+import wooyun.esnb.util.Utils
 import java.io.BufferedOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -98,14 +99,16 @@ class KyActivity : AppCompatActivity() {
                 /**
                  * 通过的format方法转为字符串类型
                  */
-                val date = Date()
+               /* *//*val date = Date()
                 @SuppressLint("SimpleDateFormat") val time1 = SimpleDateFormat("yyyy")
                 @SuppressLint("SimpleDateFormat") val time2 = SimpleDateFormat("MM")
                 @SuppressLint("SimpleDateFormat") val time3 = SimpleDateFormat("dd")
                 @SuppressLint("SimpleDateFormat") val time4 = SimpleDateFormat("HH")
                 @SuppressLint("SimpleDateFormat") val time5 = SimpleDateFormat("mm")
-                @SuppressLint("SimpleDateFormat") val time6 = SimpleDateFormat("ss")
+                @SuppressLint("SimpleDateFormat") val time6 = SimpleDateFormat("ss")*//*
                 val times = time1.format(date) + time2.format(date) + time3.format(date) + time4.format(date) + time5.format(date) + time6.format(date)
+                */
+                val times = Utils.getTime();
                 Toast.makeText(this@KyActivity, "已保存至/image/$times.png", Toast.LENGTH_SHORT).show()
                 /*将要保存图片的路径和图片名称*/
                 @SuppressLint("SdCardPath") val file = File(temp.toString() + "/" +

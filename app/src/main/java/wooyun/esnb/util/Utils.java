@@ -12,7 +12,9 @@ import android.text.TextUtils;
 import java.io.File;
 import java.math.BigDecimal;
 import java.net.NetworkInterface;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -81,10 +83,9 @@ public class Utils extends Activity {
                 return false;
             ActivityManager am = (ActivityManager) context.getSystemService(ACTIVITY_SERVICE);
             List<ActivityManager.RunningTaskInfo> list = am.getRunningTasks(1);
-//        boolean flag=false;
             for (ActivityManager.RunningTaskInfo taskInfo : list) {
-                if (taskInfo.topActivity.getShortClassName().contains(className)) { // 说明它已经启动了
-                    //                flag = true;
+                if (taskInfo.topActivity.getShortClassName().contains(className)) {
+                    // 说明它已经启动了
                     return true;
                 }
             }
@@ -101,9 +102,20 @@ public class Utils extends Activity {
         context.startActivity(Intent.createChooser(emailIntent, context.getString(R.string.Email_feedback)));
     }
 
+    /**
+     * @return
+     * @parm
+     */
+    public static String getTime() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
+        String date = df.format(new Date());
+        String str = date.replaceAll("_", "");
+        return str;
+    }
 
     /**
      * 获取缓存大小
+     *
      * @param context
      * @return
      * @throws Exception
@@ -165,6 +177,7 @@ public class Utils extends Activity {
 
     /**
      * 格式化单位
+     *
      * @param size
      * @return
      */

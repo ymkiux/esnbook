@@ -7,6 +7,8 @@ android {
         applicationId "wooyun.notepad"
         minSdkVersion 15
         targetSdkVersion 28
+        versionCode 1
+        versionName "2.6.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         resConfigs "en"
         compileOptions {
