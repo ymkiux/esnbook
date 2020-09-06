@@ -23,4 +23,4 @@
 
 #### License
 
-> [apache license 2.0](http://choosealicense.com/licenses/apache/)
+> [apache license 2.0](https://github.com/ymkiux/esnbook/blob/master/LICENSE)
