@@ -21,3 +21,6 @@
 
 > 如果觉得还不错,期待你的star！
 
+#### License
+
+> [apache license 2.0](http://choosealicense.com/licenses/apache/)

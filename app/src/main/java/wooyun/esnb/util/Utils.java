@@ -103,11 +103,12 @@ public class Utils extends Activity {
     }
 
     /**
-     * @return
-     * @parm
+     * 获取当前北京时间
+     *
+     * @return 格式 20200903121759
      */
     public static String getTime() {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat df = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
         String date = df.format(new Date());
         String str = date.replaceAll("_", "");
         return str;
