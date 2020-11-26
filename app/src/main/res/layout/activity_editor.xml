@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/back6">
-    <wooyun.esnb.cursom.TitleBar
+    <wooyun.esnb.view.TitleBar
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
                 tools:ignore="RtlHardcoded,SmallSp" />
 
 
-            <wooyun.esnb.cursom.CuNo_EditText
+            <wooyun.esnb.view.MEditText
                 android:id="@+id/et_content"
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"

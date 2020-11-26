@@ -41,5 +41,9 @@
     <string name="Cache_cleared">缓存已清空!</string>
     <string name="Internal_test_version">内测版本</string>
     <string name="already_in_beta">已经是内测版本了</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cache_has_been_emptied">缓存已清空!</string>
+    <string name="data_has_been_emptied">数据已清空!</string>
 
 </resources>

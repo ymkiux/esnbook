@@ -44,89 +44,11 @@
         android:layout_height="match_parent"
         material:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/clickTouch"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycle_activity_ky_infos"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/btn_color"
-                android:orientation="vertical">
+                android:layout_height="wrap_content" />
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="@string/glide"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="@string/glide_v" />
-
-
-            </LinearLayout>
-
-            <include layout="@layout/activity_view" />
-
-            <LinearLayout
-                android:id="@+id/clickTouch3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/btn_color"
-                android:orientation="vertical">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="@string/Jsoup"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="@string/Jsoup_v" />
-
-
-            </LinearLayout>
-
-            <include layout="@layout/activity_view" />
-
-            <LinearLayout
-                android:id="@+id/clickTouch2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/btn_color"
-                android:orientation="vertical">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="@string/photo"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="@string/photo_v" />
-            </LinearLayout>
-
-            <include layout="@layout/activity_view" />
-
-
-        </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 
@@ -138,5 +60,6 @@
         android:layout_margin="16dp"
         android:src="@drawable/ic_cached_black_24dp"
         material:layout_anchor="@id/app_bar_layout"
-        material:layout_anchorGravity="bottom|end" />
+        material:layout_anchorGravity="bottom|end"
+        android:contentDescription="TODO" />
 </android.support.design.widget.CoordinatorLayout>

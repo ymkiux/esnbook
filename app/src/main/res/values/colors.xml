@@ -9,5 +9,7 @@
     <color name="back_color1">#B0C4DE</color>
     <color name="translucent">#80FFFFFF</color>
     <color name="view_line">#F5F5DC</color>
+    <color name="white">#FFF</color>
+    <color name="view_bg">#212121</color>
 
 </resources>

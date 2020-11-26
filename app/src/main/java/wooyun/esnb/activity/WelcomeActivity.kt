@@ -9,12 +9,12 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Window
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
+import kotlinx.android.synthetic.main.activity_welcome.*
 import wooyun.esnb.R
 
 
@@ -80,16 +80,17 @@ class WelcomeActivity : AppCompatActivity() {
         val actionBar = supportActionBar
         actionBar?.hide()
         handler.sendEmptyMessageDelayed(0, 2000)
-        try {
-            val mtl1 = findViewById<ImageView>(R.id.iv1)
-            Glide.with(this)
-                    .load("http://q1.qlogo.cn/g?b=qq&nk=3255284101&s=640")
-                    .apply(RequestOptions.bitmapTransform(CircleCrop()))
-                    .into(mtl1)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+
+        Glide.with(this).load("http://q1.qlogo.cn/g?b=qq&nk=3255284101&s=640")
+                .apply(RequestOptions.bitmapTransform( CircleCrop()))
+                .into(iv1)
+
+        val anim = AnimationUtils.loadAnimation(this, R.anim.anim_rotate)
+        anim.fillAfter = true
+        iv1.startAnimation(anim)
     }
+
+
 
     @SuppressLint("HandlerLeak")
     private val handler: Handler = object : Handler() {

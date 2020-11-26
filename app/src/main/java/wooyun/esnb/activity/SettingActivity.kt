@@ -1,15 +1,18 @@
 package wooyun.esnb.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.KeyEvent
 import android.view.View
 import android.view.Window
+import com.github.tools.presenter.Str
 import wooyun.esnb.R
-import wooyun.esnb.cursom.TitleBar
+import wooyun.esnb.util.Tools
+import wooyun.esnb.view.TitleBar
 import java.util.*
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class SettingActivity : AppCompatActivity() {
     private var titleBar: TitleBar? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,11 +39,19 @@ class SettingActivity : AppCompatActivity() {
         titleBar = findViewById(R.id.title_bar)
     }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent_Activity()
-            return true
+
+    @SuppressLint("CommitPrefEdits")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val sharedPreferences = Tools().spGet(this, "wooyun.notepad_preferences")
+        if (!Str.isUrl(sharedPreferences.getString("edit_pt", ""))) {
+            sharedPreferences.edit().putString("edit_pt","")
         }
-        return super.onKeyDown(keyCode, event)
+        Intent_Activity()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        finish()
     }
 }

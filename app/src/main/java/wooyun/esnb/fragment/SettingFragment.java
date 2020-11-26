@@ -15,13 +15,14 @@ public class SettingFragment extends PreferenceFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.setting);//传入配置文件，里面存放可设置的变量
+        addPreferencesFromResource(R.xml.setting);
         try {
             initMistakeTouchPreference();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
 
     private void initMistakeTouchPreference() {

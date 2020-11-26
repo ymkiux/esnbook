@@ -32,16 +32,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import wooyun.esnb.R;
 import wooyun.esnb.bean.Values;
-import wooyun.esnb.cursom.TitleBar;
 import wooyun.esnb.dialog.SelectPicPopupWindow;
 import wooyun.esnb.sql.DbOpenHelper;
 import wooyun.esnb.util.CacheDataManager;
-import wooyun.esnb.util.Utils;
+import wooyun.esnb.util.Tools;
+import wooyun.esnb.view.TitleBar;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -112,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         mWebView.loadUrl("file:///android_asset/updateLog.html");
         dialog.show();
         //此处设置位置窗体大小，我这里设置为了手机屏幕宽度的3/4
-        Objects.requireNonNull(dialog.getWindow()).setLayout((Utils.getScreenWidth(this) / 4 * 3), LinearLayout.LayoutParams.WRAP_CONTENT);
+        Objects.requireNonNull(dialog.getWindow()).setLayout((Tools.getScreenWidth(this) / 4 * 3), LinearLayout.LayoutParams.WRAP_CONTENT);
 
     }
 
@@ -307,58 +305,25 @@ public class MainActivity extends AppCompatActivity {
         TextView time;
     }
 
-    private long exitTime;
 
-    /*重写返回键，实现双击退出效果*/
+    private long firstTime = 0;
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Timer tExit = null;
-            if (!isExit) {
-                isExit = true;
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (System.currentTimeMillis() - firstTime > 2000) {
                 showSnackBar(titleBar, getString(R.string.click_exit));
-                tExit = new Timer();
-                tExit.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        isExit = false;
-                    }
-                }, 2000);
-
+                firstTime = System.currentTimeMillis();
             } else {
                 boolean del_t = prefs.getBoolean("del_t", false);
-                if (del_t) {
-                    new Thread(new clearCache()).start();
-                }
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra(MainActivity.TAG_EXIT, true);
-                startActivity(intent);
+                if (del_t) new Thread(new clearCache()).start();
+                finish();
+                System.exit(0);
             }
-
             return true;
         }
         return super.onKeyDown(keyCode, event);
     }
-
- /*   private void Thread_del() throws IOException {
-               File del_file=getApplication().getFilesDir();
-               File file = new File(del_file,"data.txt");
-                FileInputStream fileInputStream=new FileInputStream(file);
-                byte[] buffer=new byte[fileInputStream.available()];
-                fileInputStream.read(buffer);
-                del=new String(buffer);
-                fileInputStream.close();
-            }
-    private void Thread_home() throws IOException {
-        File home_file=getApplication().getFilesDir();
-        File file1 = new File(home_file,"home.txt");
-        FileInputStream fileInputStream=new FileInputStream(file1);
-        byte[] buffer=new byte[fileInputStream.available()];
-        fileInputStream.read(buffer);
-        home=new String(buffer);
-        fileInputStream.close();
-    }*/
-
 
     /*下拉刷新*/
     @SuppressLint("Recycle")
@@ -366,13 +331,6 @@ public class MainActivity extends AppCompatActivity {
         new Thread(() -> {
             try {
                 Thread.sleep(1000);
-               /* SQLiteDatabase db = myDb.getWritableDatabase();
-                db.query(DBService.TABLE, null, null, null, null, null, null);
-                db.close();*/
-               /* Intent intent = new Intent();
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                intent.setClass(MainActivity.this, MainActivity.class);
-                startActivity(intent);*/
             } catch (InterruptedException e) {
                 e.printStackTrace();
 
@@ -434,16 +392,6 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-
-
-    /*private void setLayoutAnimation() {
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.list_layout);
-        LayoutAnimationController controller = new LayoutAnimationController(animation);
-        controller.setDelay(0.5f);
-        controller.setOrder(LayoutAnimationController.ORDER_NORMAL);
-        lv_note.setLayoutAnimation(controller);
-    }*/
-
     private void showSnackBar(View view, String text) {
         if (snackbar == null) {
             snackbar = Snackbar.make(view, text, Snackbar.LENGTH_SHORT);
@@ -455,9 +403,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class clearCache implements Runnable {
-
         @Override
-
         public void run() {
             try {
                 CacheDataManager.clearAllCache(MainActivity.this);
@@ -467,8 +413,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             } catch (Exception ignored) {
             }
-
         }
-
     }
 }

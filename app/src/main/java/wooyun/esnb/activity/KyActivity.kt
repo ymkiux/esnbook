@@ -11,36 +11,35 @@ import android.os.Message
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
-import android.view.KeyEvent
 import android.view.View
 import android.view.Window
 import android.view.animation.AnimationUtils
-import android.widget.LinearLayout
 import android.widget.Toast
 import com.bm.library.PhotoView
 import com.bumptech.glide.Glide
 import wooyun.esnb.R
-import wooyun.esnb.cursom.AppBarStateChangeListener
-import wooyun.esnb.util.Utils
+import wooyun.esnb.adapter.KyAdapter
+import wooyun.esnb.bean.Ky
+import wooyun.esnb.interfaces.AppBarStateChangeListener
+import wooyun.esnb.util.Tools
 import java.io.BufferedOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
-import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class KyActivity : AppCompatActivity() {
     private var mLastClickTime: Long = 0
     private var mtl1: PhotoView? = null
-    private var l1: LinearLayout? = null
-    private val l2: LinearLayout? = null
-    private var l3: LinearLayout? = null
-    private var l4: LinearLayout? = null
-    private val imageUrl = "https://api.ixiaowai.cn/api/api.php"
+    private var imageUrl = "https://api.ixiaowai.cn/api/api.php"
     var button: FloatingActionButton? = null
+    private var list: MutableList<Ky>? = ArrayList<Ky>()
     private var toolbar: Toolbar? = null
     private var appBarLayout: AppBarLayout? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +48,8 @@ class KyActivity : AppCompatActivity() {
         Objects.requireNonNull(supportActionBar)!!.hide()
         setContentView(R.layout.activity_ky)
         initView()
+        val string = Tools().spGet(this, "wooyun.notepad_preferences").getString("edit_pt", "")
+        if (string != null && string.length != 0) imageUrl = string
         mtl1 = findViewById(R.id.cat_image_view)
         mtl1!!.enable()
         val a = AnimationUtils.loadAnimation(this@KyActivity, R.anim.jianbian)
@@ -96,19 +97,7 @@ class KyActivity : AppCompatActivity() {
                     temp.mkdir()
                 }
                 /*重复保存时，覆盖原同名图片(本思维逻辑下不存在这个ai图像相似排除)*/
-                /**
-                 * 通过的format方法转为字符串类型
-                 */
-               /* *//*val date = Date()
-                @SuppressLint("SimpleDateFormat") val time1 = SimpleDateFormat("yyyy")
-                @SuppressLint("SimpleDateFormat") val time2 = SimpleDateFormat("MM")
-                @SuppressLint("SimpleDateFormat") val time3 = SimpleDateFormat("dd")
-                @SuppressLint("SimpleDateFormat") val time4 = SimpleDateFormat("HH")
-                @SuppressLint("SimpleDateFormat") val time5 = SimpleDateFormat("mm")
-                @SuppressLint("SimpleDateFormat") val time6 = SimpleDateFormat("ss")*//*
-                val times = time1.format(date) + time2.format(date) + time3.format(date) + time4.format(date) + time5.format(date) + time6.format(date)
-                */
-                val times = Utils.getTime();
+                val times = Tools.getTime();
                 Toast.makeText(this@KyActivity, "已保存至/image/$times.png", Toast.LENGTH_SHORT).show()
                 /*将要保存图片的路径和图片名称*/
                 @SuppressLint("SdCardPath") val file = File(temp.toString() + "/" +
@@ -125,11 +114,24 @@ class KyActivity : AppCompatActivity() {
         })
     }
 
+
+    override fun onStart() {
+        super.onStart()
+        if (list!!.size != 0) list!!.clear()
+        val recycle_activity_ky_info = findViewById<RecyclerView>(R.id.recycle_activity_ky_infos)
+        list!!.add(Ky("jsoup", "jsoup is a Java HTML parser that can directly parse a URL address and HTML text content. It provides a very labor-saving API,Data can be retrieved and manipulated through DOM, CSS and operation methods similar to jQuery", "https://jsoup.org/"))
+        list!!.add(Ky("photoview", "photoview is An ImageView display frame that supports zooming, responds to gestures", "https://github.com/bm-x/PhotoView/"))
+        list!!.add(Ky("glide", "Glide is a fast and efficient open source media management and image loading framework for Android that wraps media decoding, memory and disk caching, and resource pooling into a simple and easy to use interface", "https://github.com/bumptech/glide"))
+        list!!.add(Ky("tools", "tools is an open source library by me, adapted to Android", "https://github.com/ymkiux/tools"))
+        val layoutManager = LinearLayoutManager(this)
+        recycle_activity_ky_info.layoutManager = layoutManager
+        val kyAdapter = KyAdapter(this)
+        kyAdapter.setData(list)
+        recycle_activity_ky_info.adapter = kyAdapter
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     private fun initView() {
-        l1 = findViewById(R.id.clickTouch)
-        l3 = findViewById(R.id.clickTouch2)
-        l4 = findViewById(R.id.clickTouch3)
         toolbar = findViewById(R.id.toolbar)
         appBarLayout = findViewById(R.id.app_bar_layout)
         appBarLayout!!.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
@@ -168,15 +170,16 @@ class KyActivity : AppCompatActivity() {
         return bmp
     }
 
-    //物理返回键重写事件
-    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            val intent = Intent(this@KyActivity, AboutActivity::class.java)
-            startActivity(intent)
-            finish()
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-        }
-        return true
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this@KyActivity, AboutActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        finish()
     }
 
     //在消息队列中实现对控件的更改

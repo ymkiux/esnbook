@@ -1,14 +1,15 @@
 <component name="libraryTable">
   <library name="Gradle: com.bm.photoview:library:1.4.1@aar">
     <CLASSES>
-      <root url="jar://D:/gradle/caches/transforms-2/files-2.1/7cd6da60d24ffcb2a4039a47d917162e/library-1.4.1/jars/classes.jar!/" />
-      <root url="file://D:/gradle/caches/transforms-2/files-2.1/7cd6da60d24ffcb2a4039a47d917162e/library-1.4.1/res" />
+      <root url="jar://$PROJECT_DIR$/../../gradle/caches/transforms-2/files-2.1/7cd6da60d24ffcb2a4039a47d917162e/library-1.4.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../gradle/caches/transforms-2/files-2.1/7cd6da60d24ffcb2a4039a47d917162e/library-1.4.1/res" />
+      <root url="file://$PROJECT_DIR$/../../gradle/caches/transforms-2/files-2.1/7cd6da60d24ffcb2a4039a47d917162e/library-1.4.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://D:/gradle/caches/modules-2/files-2.1/com.bm.photoview/library/1.4.1/1443677c523f07ad6024e247cd54bdd2ad3b8235/library-1.4.1-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../gradle/caches/modules-2/files-2.1/com.bm.photoview/library/1.4.1/1443677c523f07ad6024e247cd54bdd2ad3b8235/library-1.4.1-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://D:/gradle/caches/modules-2/files-2.1/com.bm.photoview/library/1.4.1/d40bc6af03344c733e2c2865f2fc26212df9be6c/library-1.4.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../gradle/caches/modules-2/files-2.1/com.bm.photoview/library/1.4.1/d40bc6af03344c733e2c2865f2fc26212df9be6c/library-1.4.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

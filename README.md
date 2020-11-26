@@ -8,6 +8,8 @@
 
 > [photoview](https://github.com/bm-x/PhotoView)
 
+> [tools](https://github.com/ymkiux/tools)
+
 #### 截图
 
 ![img](http://image.coolapk.com/apk_image/2020/0127/11/4aa161eadbaacd443e2bdb8c7fe06a1a-222217-o_1dviiaapoa3e16kac5obu416qns-uid-1060434@1080x2340.jpg.t.jpg)
@@ -20,7 +22,3 @@
 #### 尾言
 
 > 如果觉得还不错,期待你的star！
-
-#### License
-
-> [apache license 2.0](https://github.com/ymkiux/esnbook/blob/master/LICENSE)
