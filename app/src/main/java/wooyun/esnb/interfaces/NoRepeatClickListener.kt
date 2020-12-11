@@ -3,11 +3,11 @@ package wooyun.esnb.interfaces
 import android.view.View
 
 abstract class NoRepeatClickListener : View.OnClickListener {
-    // 最后一次点击的时间
+    //最后一次点击的时间
     private var lastClickTime: Long = 0
-    override fun onClick(v: View) { // 限制多次点击
+    override fun onClick(v: View) {
         val currentTime = System.currentTimeMillis()
-        if (currentTime - lastClickTime > MIN_CLICK_DELAY_TIME) { // 两次点击的时间间隔大于最小限制时间，则触发点击事件
+        if (currentTime - lastClickTime > MIN_CLICK_DELAY_TIME) {
             lastClickTime = currentTime
             onRepeatClick(v)
         }

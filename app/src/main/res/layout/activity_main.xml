@@ -25,28 +25,20 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/back_color1">
 
-            <android.support.v4.widget.SwipeRefreshLayout
-                android:id="@+id/swipe_refresh"
+            <ListView
+                android:id="@+id/lv_note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/back_color1">
-
-                <ListView
-                    android:id="@+id/lv_note"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:divider="@color/back_color1"
-                    android:dividerHeight="18dp"
-                    android:layoutAnimation="@anim/list_layout"
-                    android:scrollbarFadeDuration="500"
-                    android:scrollbarSize="3dp"
-                    android:scrollbarThumbVertical="@color/btn_color" />
-
-            </android.support.v4.widget.SwipeRefreshLayout>
-
+                android:layout_margin="5dp"
+                android:divider="@color/back_color1"
+                android:dividerHeight="18dp"
+                android:layoutAnimation="@anim/list_layout"
+                android:scrollbarFadeDuration="500"
+                android:scrollbarSize="3dp"
+                android:scrollbarThumbVertical="@color/btn_color" />
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/btn_add"

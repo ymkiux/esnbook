@@ -9,15 +9,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +26,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.github.tools.presenter.DataManager;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -37,7 +36,6 @@ import wooyun.esnb.R;
 import wooyun.esnb.bean.Values;
 import wooyun.esnb.dialog.SelectPicPopupWindow;
 import wooyun.esnb.sql.DbOpenHelper;
-import wooyun.esnb.util.CacheDataManager;
 import wooyun.esnb.util.Tools;
 import wooyun.esnb.view.TitleBar;
 
@@ -45,14 +43,10 @@ import wooyun.esnb.view.TitleBar;
 public class MainActivity extends AppCompatActivity {
     DbOpenHelper myDb;
     private ListView lv_note;
-    private SwipeRefreshLayout swipeRefresh;
     SelectPicPopupWindow menuWindow;
     private Snackbar snackbar = null;
     private TitleBar titleBar;
-    private static Boolean isExit = false;
-    private static final String TAG_EXIT = "exit";
     private SharedPreferences prefs;
-    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +57,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         myDb = new DbOpenHelper(this);
         prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-       /* home_t = prefs.getBoolean("home_t", false);
-        讀取key參數*/
         init();
         isFirstIn();
         boolean isImmersive = false;
@@ -81,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
             window.setStatusBarColor(Color.TRANSPARENT);
             isImmersive = true;
         }
-        swipeRefresh = findViewById(R.id.swipe_refresh);
-        swipeRefresh.setOnRefreshListener(this::refresh);
         titleBar = findViewById(R.id.title_bar);
         titleBar.setTitle("");
         titleBar.setTitleColor(Color.WHITE);
@@ -111,38 +101,10 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
         //此处设置位置窗体大小，我这里设置为了手机屏幕宽度的3/4
         Objects.requireNonNull(dialog.getWindow()).setLayout((Tools.getScreenWidth(this) / 4 * 3), LinearLayout.LayoutParams.WRAP_CONTENT);
-
     }
 
-    /**
-     * 定时Timer
-     * public void isIntent() {
-     * boolean vpnUsed = Utils.isVpnUsed();
-     * if (vpnUsed) {
-     * Toasty.error(MainActivity.this, "检测到VPN服务", 0).show();
-     * Timer timer = new Timer();
-     * TimerTask timerTask = new TimerTask() {
-     *
-     * @Override public void run() {
-     * finish();
-     * }
-     * };
-     * timer.schedule(timerTask, 1000L);
-     * }
-     * }
-     */
 
     public void init() {
-        /*try {
-            Thread_del();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-        /*try {
-            Thread_home();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
         FloatingActionButton mBtnAdd = findViewById(R.id.btn_add);
         lv_note = findViewById(R.id.lv_note);
         lv_note.setEmptyView(findViewById(android.R.id.empty));
@@ -305,51 +267,17 @@ public class MainActivity extends AppCompatActivity {
         TextView time;
     }
 
-
-    private long firstTime = 0;
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-            if (System.currentTimeMillis() - firstTime > 2000) {
-                showSnackBar(titleBar, getString(R.string.click_exit));
-                firstTime = System.currentTimeMillis();
-            } else {
-                boolean del_t = prefs.getBoolean("del_t", false);
-                if (del_t) new Thread(new clearCache()).start();
-                finish();
-                System.exit(0);
-            }
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
-    /*下拉刷新*/
-    @SuppressLint("Recycle")
-    private void refresh() {
-        new Thread(() -> {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-
-            }
-            runOnUiThread(() -> {
-                init();
-                swipeRefresh.setRefreshing(false);
-            });
-        }).start();
-    }
+    private long firstTime = 0L;
 
     @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        if (intent != null) {
-            boolean isExit = intent.getBooleanExtra(TAG_EXIT, false);
-            if (isExit) {
-                this.finish();
-            }
+    public void onBackPressed() {
+        if (System.currentTimeMillis() - firstTime > 500) {
+            showSnackBar(titleBar, getString(R.string.click_exit));
+            firstTime = System.currentTimeMillis();
+        } else {
+            boolean del_t = prefs.getBoolean("del_t", false);
+            if (del_t) DataManager.INSTANCE.deleteAllCache();
+            com.github.tools.presenter.Tools.INSTANCE.handlerPostDelayed(this::finish, 500, false);
         }
     }
 
@@ -372,20 +300,20 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent();
                     intent.setClass(MainActivity.this, EditActivity.class);
                     startActivity(intent);
-                    finish();
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    finish();
                     break;
                 case R.id.btn_about:
                     Intent intent1 = new Intent();
-                    intent1.setClass(MainActivity.this, AboutActivity.class);
+                    intent1.setClass(MainActivity.this, MActivity.class);
                     startActivity(intent1);
-                    finish();
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    finish();
                     break;
                 case R.id.btn_setting:
                     startActivity(new Intent(MainActivity.this, SettingActivity.class));
-                    finish();
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    finish();
                 default:
                     break;
             }
@@ -402,17 +330,4 @@ public class MainActivity extends AppCompatActivity {
         snackbar.show();
     }
 
-    private class clearCache implements Runnable {
-        @Override
-        public void run() {
-            try {
-                CacheDataManager.clearAllCache(MainActivity.this);
-                Thread.sleep(3000);
-                if (CacheDataManager.getTotalCacheSize(MainActivity.this).startsWith("0")) {
-                    handler.sendEmptyMessage(0);
-                }
-            } catch (Exception ignored) {
-            }
-        }
-    }
 }

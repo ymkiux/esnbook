@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.ymkiux:tools:0.0.33-beta.5@aar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../gradle/caches/transforms-2/files-2.1/c30f5c98cd65e22d49ac20cf694a53b0/tools-0.0.33-beta.5/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../gradle/caches/transforms-2/files-2.1/c30f5c98cd65e22d49ac20cf694a53b0/tools-0.0.33-beta.5/res" />
+      <root url="file://$PROJECT_DIR$/../../gradle/caches/transforms-2/files-2.1/c30f5c98cd65e22d49ac20cf694a53b0/tools-0.0.33-beta.5/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../gradle/caches/modules-2/files-2.1/com.github.ymkiux/tools/0.0.33-beta.5/3eec964b27ab1c86e106d9c895c8e267242ecde4/tools-0.0.33-beta.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

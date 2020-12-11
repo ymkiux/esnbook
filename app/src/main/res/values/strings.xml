@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">易记</string>
-    <string name="Active_page0">添加笔记</string>
+    <string name="app_name">Easy to remember</string>
     <string name="Active_page1">修改笔记</string>
     <string name="Active_page2">关于</string>
     <string name="about_description">简洁的记事本软件</string>
@@ -13,17 +12,8 @@
     <string name="Eliminate">清除缓存</string>
     <string name="write">写作</string>
     <string name="ky">开源相关</string>
-    <string name="glide">Glide</string>
-    <string name="glide_v">Glide is a fast and efficient Android image loading library, focusing on smooth scrolling</string>
-    <string name="photo">PhotoView</string>
-    <string name="photo_v">PhotoView supports picture browsing, double finger zoom and picture zoom modes</string>
-    <string name="Jsoup">Jsoup</string>
-    <string name="Jsoup_v">Jsoup can extract and manipulate data through DOM, CSS and other operation methods similar to jQuery</string>
     <string name="Clear_data">清除数据</string>
-    <string name="errornull">获取为空,请等待或刷新！</string>
     <string name="wrong">异常错误!</string>
-    <string name="soureworng">快速点击获取失败</string>
-    <string name="uninstalled_Kuan">未安装酷安</string>
     <string name="title1">标题</string>
     <string name="context1">内容</string>
     <string name="click_exit">你确定要退出本程序嘛</string>
@@ -34,16 +24,11 @@
     <string name="QQ_not_installed">未安装QQ!</string>
     <string name="Alipay_is_not_installed">未安装支付宝!</string>
     <string name="Email_feedback">邮件反馈</string>
-    <string name="Clean_up_completed">清理完成!</string>
-    <string name="been_updated">已为最新版</string>
-    <string name="update_to_new">请更新应用至全新</string>
-    <string name="version">版本</string>
-    <string name="Cache_cleared">缓存已清空!</string>
-    <string name="Internal_test_version">内测版本</string>
-    <string name="already_in_beta">已经是内测版本了</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="cache_has_been_emptied">缓存已清空!</string>
     <string name="data_has_been_emptied">数据已清空!</string>
+    <string name="down">下载</string>
+    <string name="save_failed">保存失败</string>
+    <string name="saved_successfully">保存成功</string>
+    <string name="the_purge_was_successful">清除成功</string>
+
 
 </resources>

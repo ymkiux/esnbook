@@ -1,11 +1,15 @@
 package wooyun.esnb.application
 
 import android.app.Application
-import com.github.tools.presenter.DataManager
+import com.github.tools.data.Context
+//import com.tencent.bugly.crashreport.CrashReport
 
 class App : Application() {
+
     override fun onCreate() {
         super.onCreate()
-        DataManager.init(this)
+        Context.init(this)
+        //CrashReport.initCrashReport(getApplicationContext(), "ae25ecbd8b", true)
     }
+
 }

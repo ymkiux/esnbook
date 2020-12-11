@@ -2,7 +2,7 @@ package wooyun.esnb.cursom
 
 import android.view.View
 
-abstract class NoRepeatClickListener : View.OnClickListener {
+abstract class NoRepeatClickListener() : View.OnClickListener {
     // 最后一次点击的时间
     private var lastClickTime: Long = 0
     override fun onClick(v: View) { // 限制多次点击
