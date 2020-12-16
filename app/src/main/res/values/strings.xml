@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Easy to remember</string>
+    <string name="app_name">易记</string>
     <string name="Active_page1">修改笔记</string>
     <string name="Active_page2">关于</string>
     <string name="about_description">简洁的记事本软件</string>
@@ -29,6 +29,7 @@
     <string name="save_failed">保存失败</string>
     <string name="saved_successfully">保存成功</string>
     <string name="the_purge_was_successful">清除成功</string>
+    <string name="wait_a_moment">稍待片刻</string>
 
 
 </resources>

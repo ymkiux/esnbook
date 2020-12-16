@@ -11,5 +11,4 @@ class App : Application() {
         Context.init(this)
         //CrashReport.initCrashReport(getApplicationContext(), "ae25ecbd8b", true)
     }
-
 }

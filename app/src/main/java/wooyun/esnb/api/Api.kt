@@ -10,7 +10,7 @@ object Api {
         list.add(api_one)
         list.add(api_two)
         list.add(api_three)
-        val randoms = (0 until list.size).random()
+        val randoms = (0..list.size - 1).random()
         return list[randoms]
     }
 }

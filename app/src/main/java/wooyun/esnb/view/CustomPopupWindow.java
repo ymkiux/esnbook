@@ -62,6 +62,7 @@ public class CustomPopupWindow extends PopupWindow {
             }
         });
         mPopView.setOnTouchListener(new View.OnTouchListener() {// 如果触摸位置在窗口外面则销毁
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int height = mPopView.findViewById(R.id.markdownView).getTop();

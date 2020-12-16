@@ -22,6 +22,7 @@ import wooyun.esnb.activity.MActivity
 import wooyun.esnb.activity.MainActivity
 import wooyun.esnb.adapter.AboutAdapter
 import wooyun.esnb.bean.About
+import wooyun.esnb.controller.GetBitmapController
 import wooyun.esnb.interfaces.MissionCompletedCall
 import wooyun.esnb.interfaces.OnCallBack
 import wooyun.esnb.interfaces.SupplementCallBack
@@ -37,6 +38,7 @@ class AboutFragment : Fragment(), onBackPressed {
     private var missionCompletedCall: MissionCompletedCall? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        GetBitmapController(requireActivity())
         return inflater.inflate(R.layout.fragment_about, container, false)
     }
 
@@ -48,7 +50,6 @@ class AboutFragment : Fragment(), onBackPressed {
             activity.setInterception(true);
         }
     }
-
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

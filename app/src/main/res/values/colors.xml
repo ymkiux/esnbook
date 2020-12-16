@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorImages1">#000</color>
-    <color name="colorback">#CCCCCC</color>
     <color name="btn_color">#FFFFFF</color>
     <color name="background1">#222222</color>
     <color name="back6">#f0f0f0</color>
@@ -9,5 +8,5 @@
     <color name="translucent">#80FFFFFF</color>
     <color name="white">#FFF</color>
     <color name="view_bg">#212121</color>
-
+    <color name="grey">#CCCCCC</color>
 </resources>
