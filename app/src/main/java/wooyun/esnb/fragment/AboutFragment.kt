@@ -63,7 +63,7 @@ class AboutFragment : Fragment(), onBackPressed {
         ArrayList.add(About(getString(R.string.ky), R.drawable.ic_open_source))
         val layoutManager = LinearLayoutManager(requireActivity())
         recycle_fragment_about_info.layoutManager = layoutManager
-        val about = AboutAdapter(requireActivity())
+        val about = AboutAdapter()
         about.setData(ArrayList)
         recycle_fragment_about_info.adapter = about
 
