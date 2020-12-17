@@ -23,13 +23,13 @@ import wooyun.esnb.activity.MainActivity
 import wooyun.esnb.adapter.AboutAdapter
 import wooyun.esnb.bean.About
 import wooyun.esnb.controller.GetBitmapController
+import wooyun.esnb.dialog.CustomPopupWindow
 import wooyun.esnb.interfaces.MissionCompletedCall
 import wooyun.esnb.interfaces.OnCallBack
 import wooyun.esnb.interfaces.SupplementCallBack
 import wooyun.esnb.interfaces.onBackPressed
 import wooyun.esnb.sql.DbOpenHelper
 import wooyun.esnb.util.Tools
-import wooyun.esnb.view.CustomPopupWindow
 import java.util.*
 
 class AboutFragment : Fragment(), onBackPressed {

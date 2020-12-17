@@ -13,7 +13,7 @@ import wooyun.esnb.R
 import wooyun.esnb.bean.Bitmaps
 import wooyun.esnb.controller.ImageDataController
 import wooyun.esnb.interfaces.DoubleClickLister
-import wooyun.esnb.view.BlurBitmapUtil
+import wooyun.esnb.util.BlurBitmapUtil
 
 
 class PictureFragment : Fragment() {

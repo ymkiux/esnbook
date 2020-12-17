@@ -16,8 +16,8 @@ import wooyun.esnb.R
 import wooyun.esnb.bean.Bitmaps
 import wooyun.esnb.controller.ImageDataController
 import wooyun.esnb.controller.UrlController
-import wooyun.esnb.cursom.LongPressToLimitEventsClickListener
 import wooyun.esnb.interfaces.AppBarStateChangeListener
+import wooyun.esnb.interfaces.LongPressToLimitEventsClickListener
 import wooyun.esnb.interfaces.NoRepeatClickListener
 import wooyun.esnb.task.AdapterData
 

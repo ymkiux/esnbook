@@ -1,4 +1,4 @@
-package wooyun.esnb.view;
+package wooyun.esnb.dialog;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

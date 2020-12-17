@@ -426,12 +426,8 @@ public void xxxxxx(**);
 
 #---------------------------------自定义View的类------------------------
 #在这下面写自定义View的类的类，没有就去掉这句话！
--keep class wooyun.esnb.cursom.OvalImageView.**{*;}
--keep class wooyun.esnb.cursom.TitleBar.**{*;}
--keep class wooyun.esnb.cursom.MEditText.**{*;}
-#SuperID
-#由*郭宇翔*贡献混淆代码
-#作者Github地址：https://github.com/yourtion
+-keep class wooyun.esnb.view.TitleBar.**{*;}
+-keep class wooyun.esnb.view.MEditText.**{*;}
 -keep class **.R$* {*;}
 -keep class com.isnc.facesdk.aty.**{*;}
 -keep class com.isnc.facesdk.**{*;}

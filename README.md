@@ -2,12 +2,6 @@
 
 #### 用到的第三方库
 
-> [Jsoup](https://jsoup.org/download)
-
-> [Glide](https://github.com/bumptech/glide)
-
-> [photoview](https://github.com/bm-x/PhotoView)
-
 > [tools](https://github.com/ymkiux/tools)
 
 #### 截图

@@ -1,4 +1,4 @@
-package wooyun.esnb.view;
+package wooyun.esnb.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;

@@ -1,4 +1,4 @@
-package wooyun.esnb.cursom
+package wooyun.esnb.interfaces
 
 import android.view.View
 

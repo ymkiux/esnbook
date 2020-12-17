@@ -3,7 +3,6 @@ package wooyun.esnb.task
 import android.content.Context
 import android.graphics.Bitmap
 import android.support.v4.content.AsyncTaskLoader
-import android.util.Log
 import com.github.tools.task.ToolsTask
 import wooyun.esnb.api.Api
 import wooyun.esnb.bean.FiguresAndSets

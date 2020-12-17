@@ -6,7 +6,6 @@ import android.os.Message
 import android.support.v4.app.FragmentActivity
 import android.support.v4.app.LoaderManager
 import android.support.v4.content.Loader
-import android.util.Log
 import com.github.tools.interfaces.HandlerListener
 import com.github.tools.task.HandlerTask
 import wooyun.esnb.bean.Bitmaps

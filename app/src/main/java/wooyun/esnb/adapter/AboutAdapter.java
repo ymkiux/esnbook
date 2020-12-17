@@ -17,7 +17,7 @@ import java.util.List;
 
 import wooyun.esnb.R;
 import wooyun.esnb.bean.About;
-import wooyun.esnb.cursom.NoRepeatClickListener;
+import wooyun.esnb.interfaces.NoRepeatClickListener;
 import wooyun.esnb.interfaces.OnCallBack;
 import wooyun.esnb.interfaces.SupplementCallBack;
 
