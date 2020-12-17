@@ -4,15 +4,13 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Message
 import android.support.design.widget.AppBarLayout
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import com.github.tools.interfaces.HandlerListener
 import com.github.tools.task.HandlerTask
 import kotlinx.android.synthetic.main.fragment_ky.*
 import wooyun.esnb.R
+import wooyun.esnb.base.BaseFragment
 import wooyun.esnb.bean.Bitmaps
 import wooyun.esnb.controller.ImageDataController
 import wooyun.esnb.controller.UrlController
@@ -22,11 +20,9 @@ import wooyun.esnb.interfaces.NoRepeatClickListener
 import wooyun.esnb.task.AdapterData
 
 
-class KyFragment : Fragment() {
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_ky, container, false)
+class KyFragment : BaseFragment() {
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_ky
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,7 +54,7 @@ class KyFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         app_bar_layout.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
-            override fun onStateChanged(appBarLayout: AppBarLayout, state: State) {
+            override fun onStateChanged(appBarLayout: AppBarLayout?, state: State?) {
                 if (state == State.EXPANDED) {
                     /*展开状态*/
                     toolbar.visibility = View.GONE
@@ -77,7 +73,7 @@ class KyFragment : Fragment() {
 
         iv_fragment_ky_image.setOnLongClickListener(object : LongPressToLimitEventsClickListener() {
             override fun onLongPressToLimitEventsClick(v: View?) {
-                ImageDataController(requireActivity()).saveImage(iv_fragment_ky_image)
+                requestWrite(iv_fragment_ky_image)
             }
         })
 

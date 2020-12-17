@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         mWebView.loadUrl("file:///android_asset/updateLog.html");
         dialog.show();
         //此处设置位置窗体大小，我这里设置为了手机屏幕宽度的3/4
-        Objects.requireNonNull(dialog.getWindow()).setLayout((Tools.getScreenWidth(this) / 4 * 3), LinearLayout.LayoutParams.WRAP_CONTENT);
+        Objects.requireNonNull(dialog.getWindow()).setLayout((Tools.Companion.getScreenWidth(this) / 4 * 3), LinearLayout.LayoutParams.WRAP_CONTENT);
     }
 
 

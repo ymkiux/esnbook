@@ -2,35 +2,31 @@ package wooyun.esnb.fragment
 
 import android.os.Bundle
 import android.os.Message
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.github.tools.interfaces.HandlerListener
 import com.github.tools.task.HandlerTask
 import kotlinx.android.synthetic.main.fragment_picture.*
 import wooyun.esnb.R
+import wooyun.esnb.base.BaseFragment
 import wooyun.esnb.bean.Bitmaps
-import wooyun.esnb.controller.ImageDataController
 import wooyun.esnb.interfaces.DoubleClickLister
 import wooyun.esnb.util.BlurBitmapUtil
 
 
-class PictureFragment : Fragment() {
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_picture, container, false)
+class PictureFragment : BaseFragment(){
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_picture
     }
 
     override fun onResume() {
         super.onResume()
         relative_fragment_picture_bg.setOnClickListener(object : DoubleClickLister {
             override fun OnDoubleClickLister(v: View?) {
-                ImageDataController(requireActivity()).saveImage(iv_fragment_picture_img)
+                requestWrite(iv_fragment_picture_img)
             }
         })
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
