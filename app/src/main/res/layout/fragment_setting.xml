@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/dp_20">
+
+    <TextView
+        android:id="@+id/tv_routineFunction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/routineFunction"
+        tools:ignore="MissingConstraints" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_routineFunction"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/tv_automaticallyCleanCache"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/automaticallyCleanCache"
+            android:textColor="@color/background1"
+            android:textSize="@dimen/sp_16" />
+        <TextView
+            android:layout_below="@id/tv_automaticallyCleanCache"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/quitAutomaticallyClearItsCacheFiles"/>
+        <Switch
+            android:id="@+id/switch_quitAutomaticallyClearItsCacheFiles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
