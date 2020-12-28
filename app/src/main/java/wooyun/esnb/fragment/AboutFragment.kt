@@ -24,8 +24,6 @@ import wooyun.esnb.adapter.AboutAdapter
 import wooyun.esnb.bean.About
 import wooyun.esnb.controller.GetBitmapController
 import wooyun.esnb.dialog.CustomPopupWindow
-import wooyun.esnb.interfaces.MissionCompletedCall
-import wooyun.esnb.interfaces.OnCallBack
 import wooyun.esnb.interfaces.SupplementCallBack
 import wooyun.esnb.interfaces.onBackPressed
 import wooyun.esnb.sql.DbOpenHelper
@@ -35,7 +33,7 @@ import java.util.*
 class AboutFragment : Fragment(), onBackPressed {
     private var popupWindow: PopupWindow? = null
     private var ArrayList: MutableList<About> = ArrayList()
-    private var missionCompletedCall: MissionCompletedCall? = null
+    private var supplementCall: SupplementCallBack? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         GetBitmapController(requireActivity())
@@ -46,8 +44,8 @@ class AboutFragment : Fragment(), onBackPressed {
     override fun onAttach(activity: Activity?) {
         super.onAttach(activity)
         if (activity is MActivity) {
-            activity.setBackListener(this)
-            activity.setInterception(true);
+            activity.setonBackPressed(this)
+            activity.setInterception(true)
         }
     }
 
@@ -68,18 +66,7 @@ class AboutFragment : Fragment(), onBackPressed {
         recycle_fragment_about_info.adapter = about
 
         about.setSupplementCall(object : SupplementCallBack {
-            override fun onCall(position: Int, textView: TextView) {
-                when (position) {
-                    6 -> {
-                        textView.text = DataManager.getDefaultCacheSize()
-                    }
-                }
-            }
-        })
-
-
-        about.setOnCall(object : OnCallBack {
-            override fun onClick(position: Int, textView: TextView) {
+            override fun onCall(textView: TextView?,position: Int?) {
                 when (position) {
                     0 -> {
                     }
@@ -111,7 +98,7 @@ class AboutFragment : Fragment(), onBackPressed {
                                     handler.sendMessage(message)
                                 }
                             }, 1000, true)
-                            missionCompletedCall?.onCall(textView)
+                            supplementCall?.onCall(textView)
                         }).start()
                     }
                     7 -> {
@@ -144,19 +131,19 @@ class AboutFragment : Fragment(), onBackPressed {
         override fun handleMessage(msg: Message) {
             when (msg.what) {
                 0 -> {
-                    setCall(object : MissionCompletedCall {
-                        override fun onCall(textView: TextView) {
-                            textView.text = DataManager.getDefaultCacheSize()
+                    setSupplementCall(object : SupplementCallBack {
+                        override fun onCall(textView: TextView?, position: Int?) {
+                            textView?.text = DataManager.getDefaultCacheSize()
                         }
                     })
-                    Toast.makeText(requireActivity(), getString(R.string.the_purge_was_successful), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), R.string.thePurgeWasSuccessful, Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
 
-    private fun setCall(missionCompletedCall: MissionCompletedCall) {
-        this.missionCompletedCall = missionCompletedCall
+    fun setSupplementCall(supplementCall: SupplementCallBack?) {
+        this.supplementCall = supplementCall
     }
 
 

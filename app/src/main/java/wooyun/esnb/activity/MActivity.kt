@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_about.*
 import wooyun.esnb.R
 import wooyun.esnb.base.BaseActivity
@@ -16,10 +15,9 @@ import wooyun.esnb.interfaces.onBackPressed
 
 class MActivity : BaseActivity() {
 
-    private var backPressed: onBackPressed? = null
     private var isInterception = false
     private var intExtra: Int = 0
-
+    private var onBackPressed: onBackPressed? = null
     override fun getLayoutId(): Int {
         return R.layout.activity_about
     }
@@ -56,17 +54,6 @@ class MActivity : BaseActivity() {
 
 
     private fun initView() {
-        if (MainActivity.hasKitKat() && !MainActivity.hasLollipop()) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        } else if (MainActivity.hasLollipop()) {
-            val window = window
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-                    or WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
-            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.statusBarColor = Color.TRANSPARENT
-        }
         title_bar!!.setTitle("")
         title_bar!!.setTitleColor(Color.WHITE)
         title_bar!!.setSubTitleColor(Color.WHITE)
@@ -74,8 +61,8 @@ class MActivity : BaseActivity() {
     }
 
 
-    fun setBackListener(backPressed: onBackPressed?) {
-        this.backPressed = backPressed
+    fun setonBackPressed(onBackPressed: onBackPressed?) {
+        this.onBackPressed = onBackPressed
     }
 
     fun isInterception(): Boolean {
@@ -90,8 +77,8 @@ class MActivity : BaseActivity() {
         when (intExtra) {
             0 -> {
                 if (isInterception()) {
-                    if (backPressed != null) {
-                        backPressed!!.onBackForward()
+                    if (onBackPressed != null) {
+                        onBackPressed!!.onBackForward()
                         finish()
                     }
                 }

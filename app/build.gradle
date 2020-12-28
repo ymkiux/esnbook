@@ -7,7 +7,7 @@ plugins {
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "wooyun.notepad"
+        applicationId "wooyun.esnb"
         minSdkVersion 18
         targetSdkVersion 28
         versionCode 1
@@ -40,11 +40,14 @@ android {
 
 dependencies {
     //noinspection GradleCompatible
-    api 'com.android.support:appcompat-v7:28.0.0'
-    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'com.android.support:support-v4:28.0.0'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api 'com.android.support:design:28.0.0'
-    api 'com.android.support.constraint:constraint-layout:1.1.3'
-    api 'com.github.ymkiux:tools:0.0.33-beta.7'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.github.ymkiux:tools:0.0.33-beta.7'
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
+    //debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 }

@@ -11,7 +11,8 @@ class AdapterData(private val context: Context) {
     //加载Ky页adapter数据
     fun initKyData(recyclerView: RecyclerView) {
         val list: MutableList<Ky>? = ArrayList<Ky>()
-        list!!.add(Ky("tools", "tools is an open source library by me, adapted to Android", "https://github.com/ymkiux/tools"))
+        list?.add(Ky("tools", "tools is an open source library by me, adapted to Android", "https://github.com/ymkiux/tools"))
+        list?.add(Ky("Room","Room is a database object mapping library that can easily access the database on the Android application","https://developer.android.google.cn/training/data-storage/room?hl=zh-cn"))
         val layoutManager = LinearLayoutManager((context as FragmentActivity))
         recyclerView.layoutManager = layoutManager
         val kyAdapter = KyAdapter((context as FragmentActivity))

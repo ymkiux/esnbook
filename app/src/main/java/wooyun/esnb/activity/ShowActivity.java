@@ -1,10 +1,8 @@
 package wooyun.esnb.activity;
 
 import android.annotation.SuppressLint;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -31,18 +29,15 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintStream;
 import java.io.RandomAccessFile;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Objects;
 
 import wooyun.esnb.R;
-import wooyun.esnb.bean.Values;
 import wooyun.esnb.dialog.Popupwindow;
-import wooyun.esnb.sql.DbOpenHelper;
+import wooyun.esnb.room.Note;
+import wooyun.esnb.room.NoteController;
+import wooyun.esnb.util.Tools;
 import wooyun.esnb.view.TitleBar;
 
-import static wooyun.esnb.activity.MainActivity.hasKitKat;
-import static wooyun.esnb.activity.MainActivity.hasLollipop;
 
 public class ShowActivity extends AppCompatActivity {
 
@@ -50,13 +45,13 @@ public class ShowActivity extends AppCompatActivity {
     private EditText showContent;
     private EditText showTitle;
     Popupwindow menuWindow;
-    private Values value;
-    DbOpenHelper myDb;
     private GestureDetector gestureDetector;
     //记录输入的字数
     private CharSequence wordNum;
     private TextView showNumber;
     private boolean btnSave_show = true;
+
+    private Note note;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,28 +63,6 @@ public class ShowActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show);
         init();
         initView();
-       /* EditText et = findViewById(R.id.show_title);//设置光标不显示,但不能设置光标颜色
-        et.setCursorVisible(false);
-        EditText et1 = findViewById(R.id.show_content);
-        et1.setSelectAllOnFocus(true);*/
-        boolean isImmersive = false;
-        if (hasKitKat() && !hasLollipop()) {
-            isImmersive = true;
-            //透明状态栏
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            //透明导航栏
-//                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        } else if (hasLollipop()) {
-            Window window = getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-                    | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-            isImmersive = true;
-        }
         final TitleBar titleBar = (TitleBar) findViewById(R.id.title_bar);
         titleBar.setTitle("");
         titleBar.setTitleColor(Color.WHITE);
@@ -116,7 +89,6 @@ public class ShowActivity extends AppCompatActivity {
     }
 
     public void init() {
-        myDb = new DbOpenHelper(this);
         btnSave = findViewById(R.id.btn_save1);
         TextView showTime = findViewById(R.id.show_time);
         showTitle = findViewById(R.id.show_title);
@@ -124,7 +96,6 @@ public class ShowActivity extends AppCompatActivity {
         showNumber = findViewById(R.id.tv_showNumber);
         btnSave.setOnLongClickListener(new floatStr());
         showContent.addTextChangedListener(new TextWatcher() {
-
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -141,29 +112,15 @@ public class ShowActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 int number = editable.length();
                 showNumber.setText("字数：" + number);
-                /*selectionStart = showContent.getSelectionStart();
-                selectionEnd = showContent.getSelectionEnd();
-                if (temp.length() > num) {
-                    s.delete(selectionStart - 1, selectionEnd);
-                    int tempSelection = selectionEnd;
-                    content.setText(s);
-                    content.setSelection(tempSelection);//设置光标在最后
-                }
-*/
             }
         });
+
         Intent intent = this.getIntent();
         if (intent != null) {
-            value = new Values();
-
-            value.setTime(intent.getStringExtra(DbOpenHelper.TIME));
-            value.setTitle(intent.getStringExtra(DbOpenHelper.TITLE));
-            value.setContent(intent.getStringExtra(DbOpenHelper.CONTENT));
-            value.setId(Integer.valueOf(intent.getStringExtra(DbOpenHelper.ID)));
-
-            showTime.setText(value.getTime());
-            showTitle.setText(value.getTitle());
-            showContent.setText(value.getContent());
+            note = intent.getParcelableExtra("noteID");
+            showTime.setText(Tools.Companion.getTime(Long.parseLong(note.getTime())));
+            showTitle.setText(note.getTitle());
+            showContent.setText(note.getContext());
         }
 
         //按钮点击事件
@@ -176,13 +133,6 @@ public class ShowActivity extends AppCompatActivity {
         });
     }
 
-    String getTime() {
-        @SuppressLint("SimpleDateFormat")
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
-        //获取当前时间
-        Date date = new Date(System.currentTimeMillis());
-        return simpleDateFormat.format(date);
-    }
 
     //物理返回键重写事件
     @Override
@@ -196,13 +146,14 @@ public class ShowActivity extends AppCompatActivity {
     private void showDialog() {
         final String content = showContent.getText().toString();
         final String title = showTitle.getText().toString();
-        SQLiteDatabase db = myDb.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(DbOpenHelper.TIME, getTime());
-        values.put(DbOpenHelper.TITLE, title);
-        values.put(DbOpenHelper.CONTENT, content);
-        db.update(DbOpenHelper.TABLE, values, DbOpenHelper.ID + "=?", new String[]{value.getId().toString()});
-        db.close();
+        Note notes = new Note(title, content, ShowActivity.this.note.getTime());
+        notes.setId(note.getId());
+        new NoteController(ShowActivity.this).init().update(note,title,content);
+        update();
+    }
+
+
+    private void update() {
         Intent sEIntent = new Intent(ShowActivity.this, MainActivity.class);
         startActivity(sEIntent);
         finish();
@@ -214,45 +165,22 @@ public class ShowActivity extends AppCompatActivity {
 
     //为弹出窗口实现监听类
     private View.OnClickListener itemsOnClick = new View.OnClickListener() {
-
         public void onClick(View v) {
             menuWindow.dismiss();
+            String fileName = showTitle.getText().toString().trim();
+            String fileText = showContent.getText().toString().trim();
             switch (v.getId()) {
                 case R.id.btn_bianhua:
-                    SQLiteDatabase db = myDb.getWritableDatabase();
-                    ContentValues values = new ContentValues();
-                    String content = showContent.getText().toString();
-                    String title = showTitle.getText().toString();
-
-                    //检索内容
-                    String search_contet = "3255284101";
-                    boolean i=content.contains(search_contet);
-                    if (i) {
-                         Toast.makeText(ShowActivity.this, getString(R.string.input_suspicious), Toast.LENGTH_SHORT).show();
-                    }else {
-                        try {
-                            values.put(DbOpenHelper.TIME, getTime());
-                            values.put(DbOpenHelper.TITLE, title);
-                            values.put(DbOpenHelper.CONTENT, content);
-
-                            db.update(DbOpenHelper.TABLE, values, DbOpenHelper.ID + "=?", new String[]{value.getId().toString()});
-                           /* Toasty.success(ShowActivity.this, "修改成功!", Toast.LENGTH_SHORT, true).show();
-                           */ Toast.makeText(ShowActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        } finally {
-                            db.close();
-                        }
-                    }
+                    Note notes = new Note(fileName, fileText, ShowActivity.this.note.getTime());
+                    notes.setId(note.getId());
+                    new NoteController(ShowActivity.this).init().update(note,fileName,fileText);
+                    update();
                     break;
                 case R.id.btn_dchu:
-                    String fileName = showTitle.getText().toString().trim();
-                    String fileText = showContent.getText().toString().trim();
                     String f1 = "标题内容：" + fileName + "\n" + "正文内容：" + fileText;
                     String s1 = fileName + ".txt";
                     WriteDataToStorage(f1, TestFilePathApkPrivate(getApplicationContext()), s1);
-                   /* Toasty.warning(ShowActivity.this, "导出到Internal storage/Android/data/wooyun.notepad/files/SQLite/" + fileName + ".txt文件中", Toast.LENGTH_SHORT, true).show();
-                    */Toast.makeText(ShowActivity.this, "导出到/txt/" + fileName + ".txt文件中!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ShowActivity.this, "导出到/txt/" + fileName + ".txt文件中!", Toast.LENGTH_SHORT).show();
                     Intent intent1 = new Intent();
                     intent1.setClass(ShowActivity.this, MainActivity.class);
                     startActivity(intent1);

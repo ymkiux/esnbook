@@ -8,5 +8,6 @@
     <dimen name="dp_001">0.01dp</dimen>
     <dimen name="dp_10">10dp</dimen>
     <dimen name="dp_6">6dp</dimen>
-    <dimen name="sp_8">8sp</dimen>
+    <dimen name="sp_13">13sp</dimen>
+    <dimen name="dp_20">20dp</dimen>
 </resources>

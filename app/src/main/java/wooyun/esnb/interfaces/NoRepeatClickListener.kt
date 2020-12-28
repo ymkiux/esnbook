@@ -13,11 +13,6 @@ abstract class NoRepeatClickListener : View.OnClickListener {
         }
     }
 
-    /**
-     * 点击事件(相当于@link{android.view.View.OnClickListener})
-     *
-     * @param v 使用该限制点击的View
-     */
     abstract fun onRepeatClick(v: View?)
 
     companion object {

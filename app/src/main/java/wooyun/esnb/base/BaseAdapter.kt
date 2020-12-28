@@ -32,6 +32,12 @@ abstract class BaseAdapter<T>(private val getLayoutId: Int) : RecyclerView.Adapt
         return arrayList!!.size
     }
 
+    fun removeItem(position: Int) {
+        arrayList?.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, itemCount)
+    }
+
     override fun onBindViewHolder(p0: BaseViewHolder, p1: Int) {
 
     }

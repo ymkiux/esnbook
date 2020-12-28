@@ -11,6 +11,7 @@ import android.text.TextUtils
 import android.widget.Toast
 import wooyun.esnb.R
 import java.io.IOException
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -18,6 +19,10 @@ import java.util.*
 class Tools : Activity() {
 
     fun spGet(context: Context, fileName: String?): SharedPreferences {
+        return context.getSharedPreferences(fileName, Context.MODE_PRIVATE)
+    }
+
+    fun spSet(context: Context, fileName: String?): SharedPreferences {
         return context.getSharedPreferences(fileName, Context.MODE_PRIVATE)
     }
 
@@ -53,6 +58,13 @@ class Tools : Activity() {
     }
 
     companion object {
+
+        fun getTime(date:Long):String{
+            @SuppressLint("SimpleDateFormat") val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+            val date = Date(date)
+            return sdf.format(date)
+        }
+
         /**
          * 获取屏幕宽度(px)
          */

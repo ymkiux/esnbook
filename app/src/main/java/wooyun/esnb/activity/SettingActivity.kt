@@ -6,9 +6,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.Window
-import com.github.tools.presenter.Str
 import wooyun.esnb.R
-import wooyun.esnb.util.Tools
+import wooyun.esnb.fragment.SettingFragment
 import wooyun.esnb.view.TitleBar
 import java.util.*
 
@@ -37,16 +36,20 @@ class SettingActivity : AppCompatActivity() {
 
     private fun init() {
         titleBar = findViewById(R.id.title_bar)
+        supportFragmentManager
+                .beginTransaction()
+                .add(R.id.fragment, SettingFragment(), null)
+                .commit()
     }
 
 
     @SuppressLint("CommitPrefEdits")
     override fun onBackPressed() {
         super.onBackPressed()
-        val sharedPreferences = Tools().spGet(this, "wooyun.notepad_preferences")
-        if (!Str.isUrl(sharedPreferences.getString("edit_pt", ""))) {
-            sharedPreferences.edit().putString("edit_pt","")
-        }
+//        val sharedPreferences = Tools().spGet(this, "wooyun.notepad_preferences")
+//        if (!Str.isUrl(sharedPreferences.getString("edit_pt", ""))) {
+//            sharedPreferences.edit().putString("edit_pt", "")
+//        }
         Intent_Activity()
     }
 

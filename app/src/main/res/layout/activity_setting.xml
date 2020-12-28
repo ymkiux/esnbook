@@ -11,11 +11,10 @@
         android:layout_height="wrap_content"
         android:background="@color/colorImages1"/>
 
-    <fragment
-        android:name="wooyun.esnb.fragment.SettingFragment"
+    <FrameLayout
         android:id="@+id/fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="fill_parent" />
 
 
 </LinearLayout>
