@@ -2,9 +2,9 @@ package wooyun.esnb.adapter
 
 import android.content.Context
 import android.widget.TextView
+import com.github.adapter.universal.BaseAdapter
+import com.github.adapter.universal.BaseViewHolder
 import wooyun.esnb.R
-import wooyun.esnb.base.BaseAdapter
-import wooyun.esnb.base.BaseViewHolder
 import wooyun.esnb.bean.Ky
 import wooyun.esnb.util.Tools
 

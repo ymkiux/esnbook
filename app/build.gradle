@@ -36,6 +36,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    //解决More than one file was found with OS independent path 'META-INF/library_release.kotlin_module'
+    packagingOptions {
+        exclude 'META-INF/library_release.kotlin_module'
+    }
 }
 
 dependencies {
@@ -49,5 +54,6 @@ dependencies {
     implementation 'com.github.ymkiux:tools:0.0.33-beta.7'
     implementation "android.arch.persistence.room:runtime:$room_version"
     annotationProcessor "android.arch.persistence.room:compiler:$room_version"
+    implementation 'com.github.ymkiux:BaseAdapter:0.0.13-beta.0.1'
     //debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 }

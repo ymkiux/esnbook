@@ -20,7 +20,7 @@ public interface NoteDao {
     void delete(Note... notes);
 
     @Query("DELETE FROM Note")
-    void delete();
+    void deleteAll();
 
 
     @Query("SELECT * FROM Note ORDER BY ID DESC")

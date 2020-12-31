@@ -2,11 +2,15 @@ package wooyun.esnb.task
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.os.NetworkOnMainThreadException
 import android.support.v4.content.AsyncTaskLoader
 import com.github.tools.task.ToolsTask
 import wooyun.esnb.api.Api
 import wooyun.esnb.bean.FiguresAndSets
 import wooyun.esnb.util.Tools
+import java.io.IOException
+import javax.net.ssl.SSLHandshakeException
+
 
 open class BitmapTaskLoader(context: Context) : AsyncTaskLoader<FiguresAndSets>(context) {
     private var api: String? = null
@@ -15,11 +19,17 @@ open class BitmapTaskLoader(context: Context) : AsyncTaskLoader<FiguresAndSets>(
         forceLoad()
     }
 
+
+    @Throws(IOException::class, NetworkOnMainThreadException::class, SSLHandshakeException::class)
     override fun loadInBackground(): FiguresAndSets? {
         api = Api.getApi()
         //处理无网络等异常问题
         if (Tools.getNetStatus() != 0) return null
-        bitmap = ToolsTask.getBitmap(api!!)
+        bitmap = try {
+            ToolsTask.getBitmap(Api.getApi())
+        } catch (e: Exception) {
+            ToolsTask.getBitmap(Api.getApi())
+        }
         //这里不能使用全局变量作返回值 因当前为异步操作
         return FiguresAndSets(bitmap, api!!)
     }

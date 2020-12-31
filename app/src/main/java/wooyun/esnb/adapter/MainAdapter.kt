@@ -8,10 +8,10 @@ import android.os.Bundle
 import android.support.v7.widget.CardView
 import android.view.View
 import android.widget.TextView
+import com.github.adapter.universal.BaseAdapter
+import com.github.adapter.universal.BaseViewHolder
 import wooyun.esnb.R
 import wooyun.esnb.activity.ShowActivity
-import wooyun.esnb.base.BaseAdapter
-import wooyun.esnb.base.BaseViewHolder
 import wooyun.esnb.interfaces.LongPressToLimitEventsClickListener
 import wooyun.esnb.interfaces.NoRepeatClickListener
 import wooyun.esnb.room.Note

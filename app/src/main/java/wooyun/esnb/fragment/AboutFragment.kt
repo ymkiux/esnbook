@@ -26,7 +26,7 @@ import wooyun.esnb.controller.GetBitmapController
 import wooyun.esnb.dialog.CustomPopupWindow
 import wooyun.esnb.interfaces.SupplementCallBack
 import wooyun.esnb.interfaces.onBackPressed
-import wooyun.esnb.sql.DbOpenHelper
+import wooyun.esnb.room.NoteController
 import wooyun.esnb.util.Tools
 import java.util.*
 
@@ -66,7 +66,7 @@ class AboutFragment : Fragment(), onBackPressed {
         recycle_fragment_about_info.adapter = about
 
         about.setSupplementCall(object : SupplementCallBack {
-            override fun onCall(textView: TextView?,position: Int?) {
+            override fun onCall(textView: TextView?, position: Int?) {
                 when (position) {
                     0 -> {
                     }
@@ -80,9 +80,7 @@ class AboutFragment : Fragment(), onBackPressed {
                     }
                     4 -> Tools.feedback("mailto:3255284101@qq.com", requireActivity())
                     5 -> {
-                        val myDb = DbOpenHelper(requireActivity())
-                        val db = myDb.writableDatabase
-                        db.execSQL("delete from " + DbOpenHelper.TABLE)
+                        NoteController(requireActivity()).init().deleteAll()
                         Toast.makeText(requireActivity(), getString(R.string.data_has_been_emptied), Toast.LENGTH_SHORT).show()
                     }
                     6 -> {

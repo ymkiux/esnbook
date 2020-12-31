@@ -15,12 +15,17 @@ class NoteController(private val context: Context) {
         return this
     }
 
-    fun getAll(): MutableList<Note>? {
+    fun getAll(): List<Note>? {
         return dataDao?.all
     }
 
     fun delete(id: Note) {
         dataDao?.delete(id)
+        database.close()
+    }
+
+    fun deleteAll() {
+        dataDao?.deleteAll()
         database.close()
     }
 
