@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.os.StrictMode
 import android.support.v4.app.FragmentActivity
 import android.widget.ImageView
 import com.github.tools.interfaces.HandlePostBack
@@ -13,6 +14,7 @@ import com.github.tools.task.ToolsTask.saveImageBitmap
 import wooyun.esnb.R
 import wooyun.esnb.activity.MActivity
 import wooyun.esnb.bean.Bitmaps
+import wooyun.esnb.util.BitmapUtil
 
 class ImageDataController(private val context: Context) {
 
@@ -43,8 +45,14 @@ class ImageDataController(private val context: Context) {
 
     //通过url加载显示图片
     fun loadImage(img: ImageView, imageUrl: String) {
-        val bitmap = ToolsTask.getBitmap(imageUrl)
-        img.setImageBitmap(bitmap)
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            val policy = StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        val bitmap = BitmapUtil.getBitmap(imageUrl)
+        bitmap?.let {
+            img.setImageBitmap(it)
+        }
     }
 
     //保存图片至本地

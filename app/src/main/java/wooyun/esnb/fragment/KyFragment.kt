@@ -50,7 +50,6 @@ class KyFragment : BaseFragment() {
         AdapterData(requireActivity()).initKyData(recycle_activity_ky_infos)
     }
 
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         app_bar_layout.addOnOffsetChangedListener(object : AppBarStateChangeListener() {

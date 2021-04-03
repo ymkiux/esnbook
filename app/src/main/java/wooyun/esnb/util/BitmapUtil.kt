@@ -1,14 +1,21 @@
 package wooyun.esnb.util
 
+import android.R.attr.src
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.renderscript.Allocation
 import android.renderscript.Element
 import android.renderscript.RenderScript
 import android.renderscript.ScriptIntrinsicBlur
+import java.io.IOException
+import java.net.HttpURLConnection
+import java.net.MalformedURLException
+import java.net.URL
+import javax.net.ssl.SSLHandshakeException
 
 
-object BlurBitmapUtil {
+object BitmapUtil {
     // 图片缩放比例(即模糊度)
     private const val BITMAP_SCALE = 0.4f
 
@@ -48,4 +55,41 @@ object BlurBitmapUtil {
         tmpOut.copyTo(outputBitmap)
         return outputBitmap
     }
+
+    /**
+     * 通过url获取bitmap
+     * @param url
+     */
+    @Throws(IOException::class, SSLHandshakeException::class)
+    fun getBitmap(imgUrl: String): Bitmap? {
+        return try {
+            val url = URL(imgUrl)
+            val connection = url.openConnection() as HttpURLConnection
+            connection.doInput = true
+            connection.connect()
+            val input = connection.inputStream
+            BitmapFactory.decodeStream(input)
+        } catch (e: IOException) {
+            null
+        }
+//        var bitmap: Bitmap? = null
+//        var imageurl: URL? = null
+//        try {
+//            imageurl = URL(url)
+//        } catch (e: MalformedURLException) {
+//            e.printStackTrace()
+//        }
+//        try {
+//            val conn = imageurl!!.openConnection() as HttpURLConnection
+//            conn.doInput = true
+//            conn.connect()
+//            val `is` = conn.inputStream
+//            bitmap = BitmapFactory.decodeStream(`is`)
+//            `is`.close()
+//        } catch (e: IOException) {
+//            e.printStackTrace()
+//        }
+//        return bitmap
+    }
+
 }

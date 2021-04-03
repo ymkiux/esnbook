@@ -10,7 +10,7 @@ import wooyun.esnb.R
 import wooyun.esnb.base.BaseFragment
 import wooyun.esnb.bean.Bitmaps
 import wooyun.esnb.interfaces.DoubleClickLister
-import wooyun.esnb.util.BlurBitmapUtil
+import wooyun.esnb.util.BitmapUtil
 
 
 class PictureFragment : BaseFragment(){
@@ -39,7 +39,7 @@ class PictureFragment : BaseFragment(){
                 when (msg.what) {
                     0 -> {
                         val bitmap = msg.obj as android.graphics.Bitmap
-                        val blurBitmap: android.graphics.Bitmap = BlurBitmapUtil.blurBitmap(iv_fragment_picture_bg.context, msg.obj as android.graphics.Bitmap, 20f)
+                        val blurBitmap: android.graphics.Bitmap = BitmapUtil.blurBitmap(iv_fragment_picture_bg.context, msg.obj as android.graphics.Bitmap, 20f)
                         iv_fragment_picture_bg.setImageBitmap(blurBitmap)
                         iv_fragment_picture_img.setImageBitmap(bitmap)
                     }
