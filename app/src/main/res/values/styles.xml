@@ -7,15 +7,14 @@
         <!-- <item name="android:windowFullscreen">true</item> -->
         <!-- 隐藏标题栏 -->
         <!--<item name="android:windowNoTitle">true</item> -->
+        <!--设置全局默认字体颜色 -->
+        <item name="android:textColorSecondary">#333333</item>
         <!--关闭启动窗口-->
         <item name="android:windowDisablePreview">true</item>
         <item name="colorPrimary">@color/colorImages1</item>
         <item name="colorPrimaryDark">@color/colorImages1</item>
         <item name="colorAccent">@color/colorImages1</item>
-
     </style>
-
-    <!--处理启动页白屏效果-->
 
     <!-- activity进入和退出效果 -->
     <style name="AnimBottom" parent="@android:style/Animation">

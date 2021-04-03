@@ -1,17 +1,23 @@
 package wooyun.esnb.api
 
-object Api {
-    private val api_one = "https://api.ixiaowai.cn/api/api.php"
-    private val api_two = "http://www.dmoe.cc/random.php"
-    private val api_three = "https://www.rrll.cc/tuceng/ecy.php"
+import wooyun.esnb.bean.Img
 
-    private var list: MutableList<String> = ArrayList<String>()
+object Api {
+    private val api1 = "https://api.ixiaowai.cn/api/api.php"
+    private val api2 = "http://www.dmoe.cc/random.php"
+    private val api3 = "https://www.rrll.cc/tuceng/ecy.php"
+
+    private var list: MutableList<Img> = ArrayList<Img>()
 
     fun getApi(): String {
-        list.add(api_one)
-        list.add(api_two)
-        list.add(api_three)
-        val randoms = (0..list.size - 1).random()
-        return list[randoms]
+        var img = Img(api1)
+        list.add(img)
+        img = Img(api2)
+        list.add(img)
+        img = Img(api3)
+        list.add(img)
+        val randoms = (0 until list.size).random()
+        return list[randoms].imgurl
     }
+
 }

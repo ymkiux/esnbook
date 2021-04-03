@@ -16,7 +16,9 @@ class NoteController(private val context: Context) {
     }
 
     fun getAll(): List<Note>? {
-        return dataDao?.all
+       val list= dataDao?.all
+        database.close()
+        return list
     }
 
     fun delete(id: Note) {

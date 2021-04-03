@@ -1,8 +1,10 @@
 package wooyun.esnb.application
 
 import android.app.Application
+import android.content.res.Configuration
+import android.content.res.Resources
 import com.github.tools.data.Context
-//import com.tencent.bugly.crashreport.CrashReport
+
 
 class App : Application() {
 
@@ -10,5 +12,9 @@ class App : Application() {
         super.onCreate()
         Context.init(this)
         //CrashReport.initCrashReport(getApplicationContext(), "ae25ecbd8b", true)
+        val res: Resources = super.getResources()
+        val config = Configuration()
+        config.setToDefaults()
+        res.updateConfiguration(config, res.getDisplayMetrics())
     }
 }
