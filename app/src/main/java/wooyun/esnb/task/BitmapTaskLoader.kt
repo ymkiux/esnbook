@@ -25,7 +25,7 @@ open class BitmapTaskLoader(context: Context) : AsyncTaskLoader<FiguresAndSets>(
         //处理无网络等异常问题
         if (Tools.getNetStatus() != 0) return null
         return api?.let {
-            bitmap = BitmapUtil.getBitmap(it)
+            bitmap = BitmapUtil.setBitmap(it)
             FiguresAndSets(bitmap, it)
         }
     }

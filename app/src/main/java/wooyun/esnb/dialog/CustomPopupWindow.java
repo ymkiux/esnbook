@@ -35,7 +35,7 @@ public class CustomPopupWindow extends PopupWindow {
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
         webSettings.setDomStorageEnabled(true);
         webSettings.setDatabaseEnabled(true);
-        String dbPath = ((Activity) context).getDir("db", Context.MODE_PRIVATE).getPath();
+        String dbPath = context.getDir("db", Context.MODE_PRIVATE).getPath();
         webSettings.setDatabasePath(dbPath);
         webSettings.setAppCacheEnabled(true);
         webSettings.setAppCacheMaxSize(5 * 1024 * 1024);

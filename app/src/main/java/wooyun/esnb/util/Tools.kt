@@ -18,6 +18,12 @@ import java.util.*
 @SuppressLint("Registered")
 class Tools : Activity() {
 
+    fun showToast(context: Context, msg: String) {
+        val toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT)
+        toast.setText(msg)
+        toast.show()
+    }
+
     fun spGet(context: Context, fileName: String?): SharedPreferences {
         return context.getSharedPreferences(fileName, Context.MODE_PRIVATE)
     }
@@ -35,7 +41,7 @@ class Tools : Activity() {
             println("componentName = " + componentName.className)
             context.startActivity(Intent.createChooser(intent, "请选择浏览器"))
         } else {
-            Toast.makeText(context.applicationContext, "请下载浏览器", Toast.LENGTH_SHORT).show()
+            Tools().showToast(context.applicationContext, "请下载浏览器")
         }
     }
 
@@ -59,7 +65,7 @@ class Tools : Activity() {
 
     companion object {
 
-        fun getTime(date:Long):String{
+        fun getTime(date: Long): String {
             @SuppressLint("SimpleDateFormat") val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
             val date = Date(date)
             return sdf.format(date)

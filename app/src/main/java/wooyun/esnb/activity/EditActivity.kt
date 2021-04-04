@@ -11,7 +11,6 @@ import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_editor.*
 import wooyun.esnb.R
 import wooyun.esnb.interfaces.NoRepeatClickListener
@@ -57,19 +56,19 @@ class EditActivity : AppCompatActivity() {
                     startActivity(Intent(this@EditActivity, MainActivity::class.java))
                     finish()
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-                    Toast.makeText(this@EditActivity, "无内容", Toast.LENGTH_SHORT).show()
+                    Tools().showToast(this@EditActivity, "无内容")
                     return
                 }
             }
             false->{
                 if ("" == et_title.text.toString() || "" == et_content.text.toString()) {
-                    Toast.makeText(this@EditActivity, "标题或者内容不能为空!", Toast.LENGTH_SHORT).show()
+                    Tools().showToast(this@EditActivity, "标题或者内容不能为空!")
                     return
                 }
             }
         }
         NoteController(this@EditActivity).init().add(Note(et_title.text.toString(), et_content.text.toString(), System.currentTimeMillis().toString()))
-        Toast.makeText(this@EditActivity, "保存成功!", Toast.LENGTH_SHORT).show()
+        Tools().showToast(this@EditActivity, "保存成功!")
         val intent = Intent(this@EditActivity, MainActivity::class.java)
         startActivity(intent)
         finish()

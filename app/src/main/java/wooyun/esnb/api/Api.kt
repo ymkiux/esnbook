@@ -2,7 +2,7 @@ package wooyun.esnb.api
 
 object Api {
     private val api1 = "https://api.ixiaowai.cn/api/api.php"
-    private val api2 = "http://www.dmoe.cc/random.php"
+    private val api2 = "https://www.dmoe.cc/random.php"
     private val api3 = "https://www.rrll.cc/tuceng/ecy.php"
 
     fun getApi(): String {

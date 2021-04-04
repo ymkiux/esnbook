@@ -12,7 +12,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.*
 import android.widget.PopupWindow
 import android.widget.TextView
-import android.widget.Toast
 import com.github.tools.interfaces.HandlePostBack
 import com.github.tools.presenter.DataManager
 import kotlinx.android.synthetic.main.fragment_about.*
@@ -81,7 +80,7 @@ class AboutFragment : Fragment(), onBackPressed {
                     4 -> Tools.feedback("mailto:3255284101@qq.com", requireActivity())
                     5 -> {
                         NoteController(requireActivity()).init().deleteAll()
-                        Toast.makeText(requireActivity(), getString(R.string.data_has_been_emptied), Toast.LENGTH_SHORT).show()
+                        Tools().showToast(requireActivity(), getString(R.string.data_has_been_emptied))
                     }
                     6 -> {
                         Thread(Runnable {
@@ -134,7 +133,7 @@ class AboutFragment : Fragment(), onBackPressed {
                             textView?.text = DataManager.getDefaultCacheSize()
                         }
                     })
-                    Toast.makeText(requireActivity(), R.string.thePurgeWasSuccessful, Toast.LENGTH_SHORT).show()
+                    Tools().showToast(requireActivity(), getString(R.string.thePurgeWasSuccessful))
                 }
             }
         }
@@ -173,7 +172,7 @@ class AboutFragment : Fragment(), onBackPressed {
                 e.printStackTrace()
             }
         } else {
-            Toast.makeText(requireActivity(), R.string.Alipay_is_not_installed, Toast.LENGTH_SHORT).show()
+            Tools().showToast(requireActivity(), getString(R.string.Alipay_is_not_installed))
         }
     }
 
@@ -189,7 +188,7 @@ class AboutFragment : Fragment(), onBackPressed {
                 e.printStackTrace()
             }
         } else {
-            Toast.makeText(requireActivity(), R.string.QQ_not_installed, Toast.LENGTH_SHORT).show()
+            Tools().showToast(requireActivity(), getString(R.string.QQ_not_installed))
         }
     }
 

@@ -14,49 +14,55 @@
         android:layout_height="wrap_content"
         android:background="@color/colorImages1" />
 
-    <LinearLayout
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_activity_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/back_color1"
-        android:orientation="vertical"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:paddingRight="10dp">
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/back_color1">
+            android:background="@color/back_color1"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/lv_note"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:divider="@color/back_color1"
-                android:dividerHeight="18dp"
-                android:layoutAnimation="@anim/list_layout"
-                android:scrollbarFadeDuration="500"
-                android:scrollbarSize="3dp"
-                android:scrollbarThumbVertical="@color/btn_color" />
+                android:layout_height="match_parent"
+                android:background="@color/back_color1">
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/btn_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="@color/grey"
-                android:src="@drawable/ic_add_black_24dp"
-                app:backgroundTint="@color/background1"
-                tools:ignore="OnClick" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/lv_note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:divider="@color/back_color1"
+                    android:dividerHeight="18dp"
+                    android:layoutAnimation="@anim/list_layout"
+                    android:scrollbarFadeDuration="500"
+                    android:scrollbarSize="3dp"
+                    android:scrollbarThumbVertical="@color/btn_color" />
 
-        </RelativeLayout>
-    </LinearLayout>
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/btn_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/grey"
+                    android:src="@drawable/ic_add_black_24dp"
+                    app:backgroundTint="@color/background1"
+                    tools:ignore="OnClick" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <FrameLayout
         android:id="@+id/main"

@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentActivity
 import android.widget.ImageView
 import com.github.tools.interfaces.HandlePostBack
 import com.github.tools.operating.L
-import com.github.tools.task.ToolsTask
 import com.github.tools.task.ToolsTask.saveImageBitmap
 import wooyun.esnb.R
 import wooyun.esnb.activity.MActivity
@@ -49,10 +48,7 @@ class ImageDataController(private val context: Context) {
             val policy = StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-        val bitmap = BitmapUtil.getBitmap(imageUrl)
-        bitmap?.let {
-            img.setImageBitmap(it)
-        }
+        BitmapUtil.setBitmap(imageUrl)
     }
 
     //保存图片至本地

@@ -19,7 +19,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -157,10 +156,8 @@ public class ShowActivity extends AppCompatActivity {
         Intent sEIntent = new Intent(ShowActivity.this, MainActivity.class);
         startActivity(sEIntent);
         finish();
-     /*R.anim.enter:新的Activity进入时的动画
-    R.anim.edit：旧的Activity出去时的动画*/
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-        Toast.makeText(ShowActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+        new Tools().showToast(ShowActivity.this, "修改成功");
     }
 
     //为弹出窗口实现监听类
@@ -173,14 +170,14 @@ public class ShowActivity extends AppCompatActivity {
                 case R.id.btn_bianhua:
                     Note notes = new Note(fileName, fileText, ShowActivity.this.note.getTime());
                     notes.setId(note.getId());
-                    new NoteController(ShowActivity.this).init().update(note,fileName,fileText);
+                    new NoteController(ShowActivity.this).init().update(note, fileName, fileText);
                     update();
                     break;
                 case R.id.btn_dchu:
                     String f1 = "标题内容：" + fileName + "\n" + "正文内容：" + fileText;
                     String s1 = fileName + ".txt";
                     WriteDataToStorage(f1, TestFilePathApkPrivate(getApplicationContext()), s1);
-                    Toast.makeText(ShowActivity.this, "导出到/txt/" + fileName + ".txt文件中!", Toast.LENGTH_SHORT).show();
+                    new Tools().showToast(ShowActivity.this, "导出到/txt/" + fileName + ".txt文件中!");
                     Intent intent1 = new Intent();
                     intent1.setClass(ShowActivity.this, MainActivity.class);
                     startActivity(intent1);

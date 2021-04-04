@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.webkit.WebView
 import android.widget.LinearLayout
+import com.github.tools.interfaces.HandlePostBack
 import com.github.tools.presenter.DataManager
 import kotlinx.android.synthetic.main.activity_main.*
 import wooyun.esnb.R
@@ -22,11 +23,13 @@ import wooyun.esnb.room.Note
 import wooyun.esnb.room.NoteController
 import wooyun.esnb.util.Tools
 import wooyun.esnb.util.Tools.Companion.getScreenWidth
+import wooyun.esnb.view.SpacesItemDecoration
 import java.util.*
 
 
 @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class MainActivity : BaseActivity() {
+    private lateinit var about: MainAdapter
     private var menuWindow: SelectPicPopupWindow? = null
     override fun getLayoutId(): Int {
         return R.layout.activity_main
@@ -38,10 +41,20 @@ class MainActivity : BaseActivity() {
         val all: List<Note>? = NoteController(this).init().getAll()
         val layoutManager = LinearLayoutManager(this)
         lv_note.layoutManager = layoutManager
-        val about = MainAdapter(this)
+        lv_note.addItemDecoration(SpacesItemDecoration(5))
+        about = MainAdapter(this)
         about.setData(all)
         lv_note.adapter = about
+        refresh_activity_main.setOnRefreshListener {
+            com.github.tools.presenter.Tools.handlerPostDelayed(object : HandlePostBack {
+                override fun doWork() {
+                    about.setData(NoteController(this@MainActivity).init().getAll())
+                    refresh_activity_main.isRefreshing = false
+                }
+            }, 500)
+        }
     }
+
 
     override fun onResume() {
         super.onResume()
@@ -71,6 +84,7 @@ class MainActivity : BaseActivity() {
             showFirstDialog()
         }
     }
+
 
     private fun showFirstDialog() {
         @SuppressLint("InflateParams") val view = LayoutInflater.from(this@MainActivity).inflate(R.layout.activity_md, null, false)
