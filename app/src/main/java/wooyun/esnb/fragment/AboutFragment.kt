@@ -2,6 +2,8 @@ package wooyun.esnb.fragment
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -9,7 +11,12 @@ import android.os.Handler
 import android.os.Message
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.view.*
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.webkit.WebSettings
+import android.webkit.WebView
 import android.widget.PopupWindow
 import android.widget.TextView
 import com.github.tools.interfaces.HandlePostBack
@@ -22,10 +29,10 @@ import wooyun.esnb.activity.MainActivity
 import wooyun.esnb.adapter.AboutAdapter
 import wooyun.esnb.bean.About
 import wooyun.esnb.controller.GetBitmapController
-import wooyun.esnb.dialog.CustomPopupWindow
 import wooyun.esnb.interfaces.SupplementCallBack
 import wooyun.esnb.interfaces.onBackPressed
 import wooyun.esnb.room.NoteController
+import wooyun.esnb.util.DensityUtils
 import wooyun.esnb.util.Tools
 import java.util.*
 
@@ -113,12 +120,28 @@ class AboutFragment : Fragment(), onBackPressed {
     //update log view
     @SuppressLint("SetJavaScriptEnabled", "ClickableViewAccessibility")
     private fun updatedLogView() {
-        val lp: WindowManager.LayoutParams = requireActivity().getWindow().getAttributes()
-        lp.alpha = 0.3f
-        requireActivity().getWindow().setAttributes(lp)
-        val customPopupWindow = CustomPopupWindow(requireActivity())
-        customPopupWindow.showAtLocation(customPopupWindow.mPopView,
-                Gravity.CENTER or Gravity.CENTER_HORIZONTAL, 0, 0)
+        val dialog = Dialog(activity, R.style.UpdateDialog)
+        dialog.setContentView(R.layout.activity_md)
+        val window = dialog.window
+        val lp = window!!.attributes
+        lp.gravity = Gravity.CENTER
+        lp.width = resources.displayMetrics.widthPixels - activity?.let { DensityUtils.dip2px(it, 70) }!!
+        lp.height = ViewGroup.LayoutParams.WRAP_CONTENT
+        window.attributes = lp
+        val mWebView: WebView = dialog.findViewById(R.id.markdownView)
+        mWebView.loadUrl("file:///android_asset/updateLog.html")
+        val webSettings = mWebView.settings
+        webSettings.cacheMode = WebSettings.LOAD_DEFAULT
+        webSettings.domStorageEnabled = true
+        webSettings.databaseEnabled = true
+        val dbPath = context!!.getDir("db", Context.MODE_PRIVATE).path
+        webSettings.databasePath = dbPath
+        webSettings.setAppCacheEnabled(true)
+        webSettings.setAppCacheMaxSize(5 * 1024 * 1024.toLong())
+        //去掉滚动条
+        mWebView.isVerticalScrollBarEnabled = false
+        mWebView.isHorizontalScrollBarEnabled = false
+        dialog.show()
     }
 
 

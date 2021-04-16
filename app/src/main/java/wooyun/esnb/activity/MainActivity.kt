@@ -115,7 +115,7 @@ class MainActivity : BaseActivity() {
             snackbar = Snackbar.make(view, text, Snackbar.LENGTH_SHORT)
         } else {
             snackbar.setText(text)
-            snackbar.setDuration(Snackbar.LENGTH_SHORT)
+            snackbar.duration = Snackbar.LENGTH_SHORT
         }
         snackbar.show()
     }

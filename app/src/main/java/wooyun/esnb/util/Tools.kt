@@ -32,6 +32,8 @@ class Tools : Activity() {
         return context.getSharedPreferences(fileName, Context.MODE_PRIVATE)
     }
 
+
+
     fun openBrowser(context: Context, url: String?) {
         val intent = Intent()
         intent.action = Intent.ACTION_VIEW
